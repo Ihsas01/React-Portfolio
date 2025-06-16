@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaArrowDown } from 'react-icons/fa';
 import * as THREE from 'three';
+import profileImg from '../assets/profile.jpeg';
+import AnimatedText from './AnimatedText';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -80,86 +82,100 @@ const Hero = () => {
       style={{ opacity, scale }}
     >
       <div ref={containerRef} className="absolute inset-0" />
-      <div className="max-w-[1200px] mx-auto px-8 flex flex-col justify-center h-full relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-6"
-        >
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-secondary text-lg md:text-xl font-mono"
-          >
-            Hi, my name is
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl sm:text-8xl font-bold text-light bg-clip-text text-transparent bg-gradient-to-r from-secondary via-tertiary to-secondary"
-          >
-            Mohamed Ihsas
-          </motion.h1>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-4xl sm:text-7xl font-bold text-tertiary"
-          >
-            I'm a Full Stack Developer.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-tertiary py-4 max-w-[700px] text-lg md:text-xl leading-relaxed"
-          >
-            I'm a passionate full-stack developer specializing in building exceptional
-            digital experiences. Currently, I'm focused on building accessible,
-            human-centered products.
-          </motion.p>
+      <div className="max-w-[1200px] mx-auto px-8 flex flex-col lg:flex-row justify-center items-center h-full relative z-10 gap-12">
+        {/* Left: Text Content */}
+        <div className="flex-1 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex gap-8 mt-8"
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="space-y-6"
           >
-            <motion.a
-              whileHover={{ scale: 1.1, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://github.com/Ihsas01"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-light hover:text-secondary transition-colors duration-300"
+            <AnimatedText
+              text="Hi, my name is"
+              type="paragraph"
+              animation="slide"
+              className="text-secondary text-lg md:text-xl font-mono"
+            />
+            <AnimatedText
+              text="Ihsas Ifthikar"
+              type="heading"
+              animation="typing"
+              className="text-5xl sm:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-secondary via-tertiary to-secondary"
+            />
+            <AnimatedText
+              text="I'm a Full Stack Developer."
+              type="title"
+              animation="bounce"
+              className="text-3xl sm:text-4xl font-bold text-tertiary"
+              delay={0.2}
+            />
+            <AnimatedText
+              text="I'm a passionate full-stack developer specializing in building exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products."
+              type="paragraph"
+              animation="fade"
+              className="text-tertiary py-4 max-w-[700px] text-lg md:text-xl leading-relaxed"
+              delay={0.4}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex gap-8 mt-8"
             >
-              <FaGithub size={32} />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://www.linkedin.com/in/mohamed-ihsas-2a928a2b7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-light hover:text-secondary transition-colors duration-300"
-            >
-              <FaLinkedin size={32} />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-light hover:text-secondary transition-colors duration-300"
-            >
-              <FaTwitter size={32} />
-            </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://github.com/Ihsas01"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-light hover:text-secondary transition-colors duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10"
+              >
+                <FaGithub size={32} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://www.linkedin.com/in/mohamed-ihsas-2a928a2b7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-light hover:text-secondary transition-colors duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10"
+              >
+                <FaLinkedin size={32} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-light hover:text-secondary transition-colors duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10"
+              >
+                <FaTwitter size={32} />
+              </motion.a>
+            </motion.div>
           </motion.div>
-        </motion.div>
-        
+        </div>
+        {/* Right: Profile Photo */}
+        <div className="flex-1 w-full flex justify-center items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary to-tertiary rounded-full blur-xl opacity-30 animate-pulse" />
+            <motion.img
+              src={profileImg}
+              alt="Profile"
+              className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border-4 border-secondary shadow-lg bg-primary relative z-10"
+              draggable={false}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.div>
+        </div>
+        {/* Down Arrow */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -169,7 +185,7 @@ const Hero = () => {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-secondary cursor-pointer"
+            className="text-secondary cursor-pointer bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10"
             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
           >
             <FaArrowDown size={24} />

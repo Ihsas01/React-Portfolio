@@ -16,7 +16,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed w-full h-[80px] flex justify-between items-center px-4 bg-primary text-light">
+    <div className="fixed w-full h-[80px] flex justify-between items-center px-4 bg-primary text-light z-50">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -47,7 +47,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <motion.ul
-        className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-primary flex flex-col justify-center items-center'}
+        className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-primary flex flex-col justify-center items-center z-40'}
         initial={{ opacity: 0 }}
         animate={{ opacity: nav ? 1 : 0 }}
         transition={{ duration: 0.5 }}
