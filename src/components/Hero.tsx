@@ -4,12 +4,14 @@ import { FaGithub, FaLinkedin, FaTwitter, FaArrowDown } from 'react-icons/fa';
 import * as THREE from 'three';
 import profileImg from '../assets/profile.jpeg';
 import AnimatedText from './AnimatedText';
+import { fadeIn, staggerContainer, scaleIn } from '../types/animations';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -79,18 +81,21 @@ const Hero = () => {
     <motion.div 
       id="home" 
       className="w-full h-screen relative overflow-hidden"
-      style={{ opacity, scale }}
+      style={{ opacity, scale, y }}
     >
       <div ref={containerRef} className="absolute inset-0" />
-      <div className="max-w-[1200px] mx-auto px-8 flex flex-col lg:flex-row justify-center items-center h-full relative z-10 gap-12">
+      <motion.div 
+        className="max-w-[1200px] mx-auto px-8 flex flex-col lg:flex-row justify-center items-center h-full relative z-10 gap-12"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Left: Text Content */}
-        <div className="flex-1 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="space-y-6"
-          >
+        <motion.div 
+          className="flex-1 w-full"
+          variants={fadeIn}
+        >
+          <div className="space-y-6">
             <AnimatedText
               text="Hi, my name is"
               type="paragraph"
@@ -101,7 +106,7 @@ const Hero = () => {
               text="Ihsas Ifthikar"
               type="heading"
               animation="typing"
-              className="text-5xl sm:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-secondary via-tertiary to-secondary"
+              className="text-5xl sm:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-secondary via-tertiary to-secondary hover:from-tertiary hover:to-secondary transition-all duration-500"
             />
             <AnimatedText
               text="I'm a Full Stack Developer."
@@ -118,80 +123,74 @@ const Hero = () => {
               delay={0.4}
             />
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              variants={fadeIn}
               className="flex gap-8 mt-8"
             >
               <motion.a
-                whileHover={{ scale: 1.1, y: -5 }}
+                whileHover={{ scale: 1.1, y: -5, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 href="https://github.com/Ihsas01"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-light hover:text-secondary transition-colors duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10"
+                className="text-light hover:text-secondary transition-all duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10 hover:shadow-lg hover:shadow-secondary/20"
               >
                 <FaGithub size={32} />
               </motion.a>
               <motion.a
-                whileHover={{ scale: 1.1, y: -5 }}
+                whileHover={{ scale: 1.1, y: -5, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 href="https://www.linkedin.com/in/mohamed-ihsas-2a928a2b7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-light hover:text-secondary transition-colors duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10"
+                className="text-light hover:text-secondary transition-all duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10 hover:shadow-lg hover:shadow-secondary/20"
               >
                 <FaLinkedin size={32} />
               </motion.a>
               <motion.a
-                whileHover={{ scale: 1.1, y: -5 }}
+                whileHover={{ scale: 1.1, y: -5, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-light hover:text-secondary transition-colors duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10"
+                className="text-light hover:text-secondary transition-all duration-300 bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10 hover:shadow-lg hover:shadow-secondary/20"
               >
                 <FaTwitter size={32} />
               </motion.a>
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
         {/* Right: Profile Photo */}
-        <div className="flex-1 w-full flex justify-center items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary to-tertiary rounded-full blur-xl opacity-30 animate-pulse" />
+        <motion.div 
+          className="flex-1 w-full flex justify-center items-center"
+          variants={scaleIn}
+        >
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary to-tertiary rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse" />
             <motion.img
               src={profileImg}
               alt="Profile"
-              className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border-4 border-secondary shadow-lg bg-primary relative z-10"
+              className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border-4 border-secondary shadow-lg bg-primary relative z-10 transition-all duration-500 group-hover:border-tertiary group-hover:shadow-xl group-hover:shadow-tertiary/20"
               draggable={false}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, rotate: 2 }}
               transition={{ duration: 0.3 }}
             />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
         {/* Down Arrow */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          variants={fadeIn}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-secondary cursor-pointer bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10"
+            className="text-secondary cursor-pointer bg-gray-800 dark:bg-gray-700 p-3 rounded-full hover:bg-secondary/10 hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300"
             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
           >
             <FaArrowDown size={24} />
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
