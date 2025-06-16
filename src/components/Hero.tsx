@@ -169,7 +169,7 @@ const Hero = () => {
             <motion.img
               src={profileImg}
               alt="Profile"
-              className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border-4 border-secondary shadow-lg bg-primary relative z-10 transition-all duration-500 group-hover:border-tertiary group-hover:shadow-xl group-hover:shadow-tertiary/20"
+              className="w-64 h-64 md:w-96 md:h-96 rounded-full object-cover border-4 border-secondary shadow-lg bg-primary relative z-10 transition-all duration-500 group-hover:border-tertiary group-hover:shadow-xl group-hover:shadow-tertiary/20"
               draggable={false}
               whileHover={{ scale: 1.05, rotate: 2 }}
               transition={{ duration: 0.3 }}

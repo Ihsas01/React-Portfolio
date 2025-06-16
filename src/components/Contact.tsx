@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaUser, FaComment, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import HoverEffect from './HoverEffect';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init('mXKWDY9ESIHAUk0XG');
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,12 +32,20 @@ const Contact = () => {
     setSuccess(false);
 
     try {
-      // Create mailto link with form data
-      const { name, email, message } = formData;
-      const mailtoLink = `mailto:mohamedihsas001@gmail.com?subject=New Contact Form Message from ${name}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+      // Replace these with your actual EmailJS credentials
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'mohamedihsas001@gmail.com',
+      };
 
-      // Open default email client
-      window.location.href = mailtoLink;
+      await emailjs.send(
+        'service_nbhynxk', // Replace with your EmailJS service ID
+        'template_lt8urts', // Replace with your EmailJS template ID
+        templateParams,
+        'mXKWDY9ESIHAUk0XG' // Replace with your EmailJS public key
+      );
       
       setSuccess(true);
       setFormData({ name: '', email: '', message: '' });
@@ -109,7 +123,7 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Form */}
-          <HoverEffect className="bg-primary-light/50 backdrop-blur-sm rounded-xl p-8 shadow-xl">
+          <div className="bg-primary-light/50 backdrop-blur-sm rounded-xl p-8 shadow-xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -169,7 +183,7 @@ const Contact = () => {
                 disabled={loading}
                 className="w-full bg-secondary text-primary font-semibold py-3 px-6 rounded-lg hover:bg-secondary-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? 'Opening Email...' : 'Send Message'}
+                {loading ? 'Sending...' : 'Send Message'}
               </motion.button>
 
               {success && (
@@ -178,7 +192,7 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-green-400 text-center"
                 >
-                  Your default email client will open. Please click send to complete the process.
+                  Your message has been sent successfully!
                 </motion.p>
               )}
 
@@ -192,7 +206,7 @@ const Contact = () => {
                 </motion.p>
               )}
             </form>
-          </HoverEffect>
+          </div>
         </div>
       </div>
     </section>
