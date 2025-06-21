@@ -80,7 +80,7 @@ const Hero = () => {
   return (
     <motion.div 
       id="home" 
-      className="w-full h-screen relative overflow-hidden"
+      className="w-full min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-6rem)] relative overflow-hidden flex items-center"
       style={{ opacity, scale, y }}
     >
       <div ref={containerRef} className="absolute inset-0" />

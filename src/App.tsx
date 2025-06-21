@@ -25,7 +25,7 @@ function App() {
       <CursorFollower />
       <Navbar />
       <ThemeToggle />
-      <main className="relative z-10">
+      <main className="relative z-10 pt-20 md:pt-24">
         <Suspense fallback={<div>Loading...</div>}>
           <PageTransition>
             <Hero />
