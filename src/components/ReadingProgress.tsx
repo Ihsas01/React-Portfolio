@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useScroll, useSpring } from 'framer-motion';
 
 const ReadingProgress = () => {
   const { scrollYProgress } = useScroll();

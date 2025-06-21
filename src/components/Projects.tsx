@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaSearch, FaFilter, FaStar, FaCode, FaMobile, FaDatabase, FaServer, FaLaptopCode } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaSearch, FaFilter, FaStar, FaCode, FaMobile, FaServer, FaLaptopCode } from 'react-icons/fa';
 
 // Placeholder images
 const bloodDonationImg = 'https://placehold.co/800x600/2563eb/ffffff?text=Blood+Donation+System';
@@ -18,9 +18,8 @@ const financialTrackerImg = 'https://placehold.co/800x600/0369a1/ffffff?text=Fin
 const onlineFruitStoreImg = 'https://placehold.co/800x600/15803d/ffffff?text=Online+Fruit+Store';
 
 const Projects = () => {
+  const [filter, setFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const { scrollYProgress } = useScroll();
@@ -238,7 +237,7 @@ const Projects = () => {
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
+    const matchesCategory = filter === 'all' || project.category === filter;
     return matchesSearch && matchesCategory;
   });
 
@@ -317,9 +316,9 @@ const Projects = () => {
                 key={category}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => setFilter(category)}
                 className={`px-4 py-2 rounded-lg capitalize transition-all duration-300 flex items-center gap-2 backdrop-blur-sm ${
-                  selectedCategory === category
+                  filter === category
                     ? 'bg-secondary text-primary shadow-lg shadow-secondary/20'
                     : 'bg-primary-light/50 text-tertiary hover:bg-tertiary/20'
                 }`}
@@ -367,8 +366,6 @@ const Projects = () => {
                   whileHover="hover"
                   layout
                   className="group relative bg-primary-light/50 rounded-xl overflow-hidden backdrop-blur-sm border border-tertiary/10 hover:border-secondary/30 transition-all duration-300"
-                  onHoverStart={() => setHoveredProject(project.id)}
-                  onHoverEnd={() => setHoveredProject(null)}
                 >
                   <div className="relative overflow-hidden">
                     <img

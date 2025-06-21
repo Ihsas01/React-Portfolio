@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCode, FaLaptopCode, FaRocket, FaLightbulb } from 'react-icons/fa';
 

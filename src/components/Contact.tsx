@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaUser, FaComment, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
-import HoverEffect from './HoverEffect';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {

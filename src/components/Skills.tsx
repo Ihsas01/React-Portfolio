@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   FaReact,
   FaNodeJs,
-  FaDatabase,
   FaGitAlt,
   FaDocker,
   FaAws,
   FaHtml5,
   FaCss3Alt,
   FaJs,
-  FaCode,
+  FaLaptopCode,
 } from 'react-icons/fa';
 import { SiTypescript, SiTailwindcss, SiMongodb, SiExpress, SiRedux } from 'react-icons/si';
 
@@ -227,7 +226,7 @@ const Skills = () => {
                   transition={{ duration: 0.3 }}
                   className="text-sm text-secondary"
                 >
-                  <FaCode size={14} />
+                  <FaLaptopCode size={14} />
                 </motion.div>
               </div>
 
