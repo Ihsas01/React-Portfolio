@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaEnvelope, FaUser, FaComment, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaEnvelope, FaUser, FaComment, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter, FaCheck, FaTimes, FaPaperPlane, FaSpinner } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
@@ -149,7 +149,7 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <h2 className="heading gradient-text">Let's Work Together</h2>
           <p className="subheading max-w-3xl mx-auto">
@@ -158,18 +158,18 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-light mb-6">Get In Touch</h3>
-              <p className="text-tertiary leading-relaxed mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-light mb-4 sm:mb-6">Get In Touch</h3>
+              <p className="text-tertiary leading-relaxed mb-6 sm:mb-8">
                 Ready to start your next project? I'd love to hear from you. 
                 Whether you have a question, want to discuss a project, or just want to say hello, 
                 feel free to reach out through any of these channels.
@@ -193,13 +193,15 @@ const Contact = () => {
                   className="card flex items-center gap-4 p-4 group hover:border-secondary/30 transition-all duration-300"
                 >
                   <div className={`p-3 rounded-lg bg-white/5 group-hover:bg-white/10 transition-all duration-300 ${info.color}`}>
-                    <info.icon size={24} />
+                    <info.icon size={20} />
                   </div>
                   <div>
                     <h4 className="font-semibold text-light group-hover:text-secondary transition-colors duration-300">
                       {info.title}
                     </h4>
-                    <p className="text-tertiary">{info.content}</p>
+                    <p className="text-tertiary text-sm sm:text-base">
+                      {info.content}
+                    </p>
                   </div>
                 </motion.a>
               ))}
@@ -211,41 +213,24 @@ const Contact = () => {
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
-                    key={index}
+                    key={social.title}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, y: -5, rotate: 5 }}
+                    whileHover={{ scale: 1.1, y: -3 }}
                     whileTap={{ scale: 0.9 }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     className={`text-light hover:text-secondary transition-all duration-300 bg-white/5 p-3 rounded-full hover:bg-white/10 hover:shadow-glow ${social.color}`}
                     aria-label={social.title}
                   >
-                    <social.icon size={24} />
+                    <social.icon size={20} />
                   </motion.a>
                 ))}
               </div>
             </div>
-
-            {/* Availability Status */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="card p-6"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-green-400">Available for new projects</span>
-              </div>
-              <p className="text-tertiary text-sm">
-                I'm currently accepting new freelance opportunities and interesting project collaborations.
-              </p>
-            </motion.div>
           </motion.div>
 
           {/* Contact Form */}
@@ -254,161 +239,206 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="glass rounded-2xl p-8"
+            className="relative"
           >
-            <h3 className="text-2xl font-bold text-light mb-6">Send a Message</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaUser className={`text-lg ${focusedField === 'name' ? 'text-secondary' : 'text-tertiary'}`} />
-                </div>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('name')}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="Your Name"
-                  className={`input-field pl-12 w-full ${formErrors.name ? 'border-error' : ''}`}
-                />
-                {formErrors.name && (
+            <div className="card p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-light mb-6">Send Message</h3>
+              
+              <AnimatePresence mode="wait">
+                {success ? (
                   <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-1 mt-1 text-error text-sm"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    className="text-center py-8"
                   >
-                    <FaTimes size={12} />
-                    {formErrors.name}
+                    <div className="w-16 h-16 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <FaCheck className="text-success text-2xl" />
+                    </div>
+                    <h4 className="text-xl font-bold text-light mb-2">Message Sent!</h4>
+                    <p className="text-tertiary mb-6">
+                      Thank you for reaching out. I'll get back to you as soon as possible.
+                    </p>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setSuccess(false)}
+                      className="btn-primary"
+                    >
+                      Send Another Message
+                    </motion.button>
                   </motion.div>
-                )}
-              </div>
-
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaEnvelope className={`text-lg ${focusedField === 'email' ? 'text-secondary' : 'text-tertiary'}`} />
-                </div>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('email')}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="Your Email"
-                  className={`input-field pl-12 w-full ${formErrors.email ? 'border-error' : ''}`}
-                />
-                {formErrors.email && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-1 mt-1 text-error text-sm"
-                  >
-                    <FaTimes size={12} />
-                    {formErrors.email}
-                  </motion.div>
-                )}
-              </div>
-
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <FaComment className={`text-lg ${focusedField === 'subject' ? 'text-secondary' : 'text-tertiary'}`} />
-                </div>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('subject')}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="Subject"
-                  className={`input-field pl-12 w-full ${formErrors.subject ? 'border-error' : ''}`}
-                />
-                {formErrors.subject && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-1 mt-1 text-error text-sm"
-                  >
-                    <FaTimes size={12} />
-                    {formErrors.subject}
-                  </motion.div>
-                )}
-              </div>
-
-              <div className="relative">
-                <div className="absolute top-4 left-4 pointer-events-none">
-                  <FaComment className={`text-lg ${focusedField === 'message' ? 'text-secondary' : 'text-tertiary'}`} />
-                </div>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('message')}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="Your Message"
-                  rows={6}
-                  className={`input-field pl-12 w-full resize-none ${formErrors.message ? 'border-error' : ''}`}
-                />
-                {formErrors.message && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-1 mt-1 text-error text-sm"
-                  >
-                    <FaTimes size={12} />
-                    {formErrors.message}
-                  </motion.div>
-                )}
-              </div>
-
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                disabled={loading}
-                className="btn-primary w-full flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-                    <span>Sending...</span>
-                  </>
                 ) : (
-                  <>
-                    <FaEnvelope className="text-sm" />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </motion.button>
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    {/* Name Field */}
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-light mb-2">
+                        Name *
+                      </label>
+                      <div className="relative">
+                        <FaUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-tertiary" />
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          onFocus={() => setFocusedField('name')}
+                          onBlur={() => setFocusedField(null)}
+                          className={`input-field pl-12 w-full ${
+                            focusedField === 'name' ? 'border-secondary ring-2 ring-secondary/20' : ''
+                          } ${formErrors.name ? 'border-error' : ''}`}
+                          placeholder="Your name"
+                        />
+                      </div>
+                      {formErrors.name && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-error text-sm mt-1 flex items-center"
+                        >
+                          <FaTimes className="mr-1" />
+                          {formErrors.name}
+                        </motion.p>
+                      )}
+                    </div>
 
-              <AnimatePresence>
-                {success && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-2 text-success text-center p-3 bg-success/10 rounded-lg border border-success/20"
-                  >
-                    <FaCheck size={16} />
-                    <span>Your message has been sent successfully!</span>
-                  </motion.div>
-                )}
+                    {/* Email Field */}
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-light mb-2">
+                        Email *
+                      </label>
+                      <div className="relative">
+                        <FaEnvelope className="absolute left-4 top-1/2 transform -translate-y-1/2 text-tertiary" />
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          onFocus={() => setFocusedField('email')}
+                          onBlur={() => setFocusedField(null)}
+                          className={`input-field pl-12 w-full ${
+                            focusedField === 'email' ? 'border-secondary ring-2 ring-secondary/20' : ''
+                          } ${formErrors.email ? 'border-error' : ''}`}
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                      {formErrors.email && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-error text-sm mt-1 flex items-center"
+                        >
+                          <FaTimes className="mr-1" />
+                          {formErrors.email}
+                        </motion.p>
+                      )}
+                    </div>
 
-                {error && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-2 text-error text-center p-3 bg-error/10 rounded-lg border border-error/20"
-                  >
-                    <FaTimes size={16} />
-                    <span>{error}</span>
-                  </motion.div>
+                    {/* Subject Field */}
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-light mb-2">
+                        Subject *
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField('subject')}
+                        onBlur={() => setFocusedField(null)}
+                        className={`input-field w-full ${
+                          focusedField === 'subject' ? 'border-secondary ring-2 ring-secondary/20' : ''
+                        } ${formErrors.subject ? 'border-error' : ''}`}
+                        placeholder="What's this about?"
+                      />
+                      {formErrors.subject && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-error text-sm mt-1 flex items-center"
+                        >
+                          <FaTimes className="mr-1" />
+                          {formErrors.subject}
+                        </motion.p>
+                      )}
+                    </div>
+
+                    {/* Message Field */}
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-light mb-2">
+                        Message *
+                      </label>
+                      <div className="relative">
+                        <FaComment className="absolute left-4 top-4 text-tertiary" />
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          onFocus={() => setFocusedField('message')}
+                          onBlur={() => setFocusedField(null)}
+                          rows={5}
+                          className={`input-field pl-12 w-full resize-none ${
+                            focusedField === 'message' ? 'border-secondary ring-2 ring-secondary/20' : ''
+                          } ${formErrors.message ? 'border-error' : ''}`}
+                          placeholder="Tell me about your project..."
+                        />
+                      </div>
+                      {formErrors.message && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-error text-sm mt-1 flex items-center"
+                        >
+                          <FaTimes className="mr-1" />
+                          {formErrors.message}
+                        </motion.p>
+                      )}
+                    </div>
+
+                    {/* Error Message */}
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-error/10 border border-error/30 rounded-lg p-4 text-error text-sm"
+                      >
+                        <div className="flex items-center">
+                          <FaTimes className="mr-2" />
+                          {error}
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Submit Button */}
+                    <motion.button
+                      type="submit"
+                      disabled={loading}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`btn-primary w-full flex items-center justify-center space-x-2 ${
+                        loading ? 'opacity-75 cursor-not-allowed' : ''
+                      }`}
+                    >
+                      {loading ? (
+                        <>
+                          <FaSpinner className="animate-spin" />
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <FaPaperPlane />
+                          <span>Send Message</span>
+                        </>
+                      )}
+                    </motion.button>
+                  </form>
                 )}
               </AnimatePresence>
-            </form>
+            </div>
           </motion.div>
         </div>
       </div>

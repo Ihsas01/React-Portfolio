@@ -57,6 +57,24 @@
   a, button, input, textarea, select {
     @apply transition-all duration-300 ease-in-out;
   }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    html {
+      scroll-padding-top: 60px;
+    }
+    
+    /* Improve touch targets */
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better text readability on mobile */
+    p {
+      @apply leading-7;
+    }
+  }
 }
 
 @layer components {
@@ -203,31 +221,95 @@
   .container-spacing {
     @apply px-4 sm:px-6 lg:px-8;
   }
-}
 
-/* Dark mode overrides */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #ccd6f6;
-    background-color: #0a192f;
+  /* Mobile-specific utilities */
+  .mobile-optimized {
+    @apply text-sm sm:text-base;
+  }
+
+  .mobile-card {
+    @apply p-4 sm:p-6;
+  }
+
+  .mobile-button {
+    @apply px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base;
+  }
+
+  /* Touch-friendly interactions */
+  .touch-friendly {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-nav-item {
+    @apply py-4 px-6 text-lg font-medium;
+  }
+
+  /* Mobile modal improvements */
+  .mobile-modal {
+    @apply w-full max-w-[95vw] max-h-[90vh] m-2;
+  }
+
+  /* Mobile form improvements */
+  .mobile-input {
+    @apply text-base py-4 px-4;
+  }
+
+  /* Mobile button improvements */
+  .mobile-btn {
+    @apply py-4 px-6 text-base font-medium;
   }
 }
 
-/* Print styles */
-@media print {
-  .no-print {
-    display: none !important;
+/* Mobile-specific media queries */
+@media (max-width: 768px) {
+  .section-padding {
+    @apply py-12 px-4;
+  }
+  
+  .heading {
+    @apply text-2xl sm:text-3xl;
+  }
+  
+  .subheading {
+    @apply text-lg sm:text-xl;
+  }
+  
+  .card {
+    @apply p-4;
+  }
+  
+  .btn-primary, .btn-secondary {
+    @apply px-4 py-3 text-sm;
+  }
+  
+  .input-field {
+    @apply py-4 px-4 text-base;
+  }
+  
+  /* Improve mobile scrolling */
+  .mobile-smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile-specific animations */
+  .mobile-animate {
+    @apply transition-all duration-200;
   }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .card {
-    @apply border-2 border-secondary;
+    @apply border-2 border-white/30;
   }
   
   .btn-primary {
     @apply border-2 border-secondary;
+  }
+  
+  .input-field {
+    @apply border-2 border-white/30;
   }
 }
 
@@ -239,5 +321,21 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply bg-white text-black;
+  }
+  
+  .card {
+    @apply bg-white border border-gray-300 shadow-none;
   }
 }
