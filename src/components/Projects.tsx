@@ -1,32 +1,33 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaSearch, FaFilter, FaStar, FaCode, FaMobile, FaServer, FaLaptopCode } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt, FaSearch, FaStar, FaCode, FaMobile, FaServer, FaLaptopCode, FaEye, FaHeart } from 'react-icons/fa';
 
-// Placeholder images
-const bloodDonationImg = 'https://placehold.co/800x600/2563eb/ffffff?text=Blood+Donation+System';
-const freshConImg = 'https://placehold.co/800x600/16a34a/ffffff?text=FreshCoN+Grocery';
-const freeChoiceImg = 'https://placehold.co/800x600/9333ea/ffffff?text=FreeChoice+Store';
-const portfolioVanillaImg = 'https://placehold.co/800x600/ea580c/ffffff?text=Portfolio';
-const portfolioReactImg = 'https://placehold.co/800x600/0284c7/ffffff?text=Portfolio+React';
-const currencyConverterImg = 'https://placehold.co/800x600/0891b2/ffffff?text=Currency+Converter';
-const passwordGeneratorImg = 'https://placehold.co/800x600/4f46e5/ffffff?text=Password+Generator';
-const stopwatchImg = 'https://placehold.co/800x600/be185d/ffffff?text=Stopwatch';
-const rockPaperScissorsImg = 'https://placehold.co/800x600/7c3aed/ffffff?text=Rock+Paper+Scissors';
-const ageCalculatorImg = 'https://placehold.co/800x600/0f766e/ffffff?text=Age+Calculator';
-const onlineQuizImg = 'https://placehold.co/800x600/be123c/ffffff?text=Online+Quiz';
-const financialTrackerImg = 'https://placehold.co/800x600/0369a1/ffffff?text=Financial+Tracker';
-const onlineFruitStoreImg = 'https://placehold.co/800x600/15803d/ffffff?text=Online+Fruit+Store';
+// Placeholder images with better quality
+const bloodDonationImg = 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&crop=center';
+const freshConImg = 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&h=600&fit=crop&crop=center';
+const freeChoiceImg = 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&crop=center';
+const portfolioVanillaImg = 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop&crop=center';
+const portfolioReactImg = 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&crop=center';
+const currencyConverterImg = 'https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=800&h=600&fit=crop&crop=center';
+const passwordGeneratorImg = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&crop=center';
+const stopwatchImg = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&crop=center';
+const rockPaperScissorsImg = 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=600&fit=crop&crop=center';
+const ageCalculatorImg = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center';
+const onlineQuizImg = 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop&crop=center';
+const financialTrackerImg = 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&crop=center';
+const onlineFruitStoreImg = 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=800&h=600&fit=crop&crop=center';
 
-const Projects = () => {
-  const [filter, setFilter] = useState('all');
+const Projects: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
 
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [0.8, 1]);
-
-  const categories = ['all', 'web-mini', 'mobile', 'full-stack'];
+  const categories = [
+    { id: 'all', name: 'All Projects', icon: FaCode, count: 13 },
+    { id: 'full-stack', name: 'Full Stack', icon: FaServer, count: 3 },
+    { id: 'web-mini', name: 'Web Apps', icon: FaLaptopCode, count: 9 },
+    { id: 'mobile', name: 'Mobile Apps', icon: FaMobile, count: 1 },
+  ];
 
   const projects = [
     {
@@ -39,10 +40,9 @@ const Projects = () => {
       category: 'full-stack',
       technologies: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Redux', 'JWT', 'Socket.io'],
       featured: true,
-      stats: {
-        stars: 145,
-        forks: 38,
-      },
+      stats: { stars: 145, forks: 38, views: 1200 },
+      difficulty: 'Advanced',
+      duration: '3 months',
     },
     {
       id: '2',
@@ -54,10 +54,9 @@ const Projects = () => {
       category: 'full-stack',
       technologies: ['PHP', 'MySQL', 'XAMPP', 'HTML5', 'CSS3', 'JavaScript', 'Bootstrap'],
       featured: true,
-      stats: {
-        stars: 98,
-        forks: 25,
-      },
+      stats: { stars: 98, forks: 25, views: 850 },
+      difficulty: 'Advanced',
+      duration: '2.5 months',
     },
     {
       id: '3',
@@ -69,10 +68,9 @@ const Projects = () => {
       category: 'full-stack',
       technologies: ['PHP', 'MySQL', 'XAMPP', 'jQuery', 'Bootstrap', 'PayPal API'],
       featured: true,
-      stats: {
-        stars: 112,
-        forks: 29,
-      },
+      stats: { stars: 112, forks: 29, views: 950 },
+      difficulty: 'Advanced',
+      duration: '3 months',
     },
     {
       id: '4',
@@ -84,10 +82,9 @@ const Projects = () => {
       category: 'web-mini',
       technologies: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
       featured: false,
-      stats: {
-        stars: 35,
-        forks: 8,
-      },
+      stats: { stars: 35, forks: 8, views: 300 },
+      difficulty: 'Intermediate',
+      duration: '1 month',
     },
     {
       id: '5',
@@ -99,10 +96,9 @@ const Projects = () => {
       category: 'web-mini',
       technologies: ['React', 'Tailwind CSS', 'Framer Motion'],
       featured: false,
-      stats: {
-        stars: 42,
-        forks: 10,
-      },
+      stats: { stars: 42, forks: 10, views: 400 },
+      difficulty: 'Intermediate',
+      duration: '1.5 months',
     },
     {
       id: '6',
@@ -114,10 +110,9 @@ const Projects = () => {
       category: 'web-mini',
       technologies: ['HTML5', 'CSS3', 'JavaScript', 'Exchange Rate API'],
       featured: false,
-      stats: {
-        stars: 28,
-        forks: 6,
-      },
+      stats: { stars: 28, forks: 6, views: 250 },
+      difficulty: 'Beginner',
+      duration: '2 weeks',
     },
     {
       id: '7',
@@ -129,10 +124,9 @@ const Projects = () => {
       category: 'web-mini',
       technologies: ['HTML5', 'CSS3', 'JavaScript'],
       featured: false,
-      stats: {
-        stars: 31,
-        forks: 7,
-      },
+      stats: { stars: 31, forks: 7, views: 280 },
+      difficulty: 'Beginner',
+      duration: '1 week',
     },
     {
       id: '8',
@@ -144,10 +138,9 @@ const Projects = () => {
       category: 'web-mini',
       technologies: ['HTML5', 'CSS3', 'JavaScript'],
       featured: false,
-      stats: {
-        stars: 25,
-        forks: 5,
-      },
+      stats: { stars: 25, forks: 5, views: 200 },
+      difficulty: 'Beginner',
+      duration: '1 week',
     },
     {
       id: '9',
@@ -159,10 +152,9 @@ const Projects = () => {
       category: 'web-mini',
       technologies: ['HTML5', 'CSS3', 'JavaScript'],
       featured: false,
-      stats: {
-        stars: 33,
-        forks: 8,
-      },
+      stats: { stars: 33, forks: 8, views: 320 },
+      difficulty: 'Beginner',
+      duration: '1 week',
     },
     {
       id: '10',
@@ -174,10 +166,9 @@ const Projects = () => {
       category: 'web-mini',
       technologies: ['HTML5', 'CSS3', 'JavaScript'],
       featured: false,
-      stats: {
-        stars: 29,
-        forks: 6,
-      },
+      stats: { stars: 29, forks: 6, views: 260 },
+      difficulty: 'Beginner',
+      duration: '1 week',
     },
     {
       id: '11',
@@ -189,56 +180,53 @@ const Projects = () => {
       category: 'web-mini',
       technologies: ['HTML5', 'CSS3', 'JavaScript'],
       featured: false,
-      stats: {
-        stars: 37,
-        forks: 9,
-      },
+      stats: { stars: 37, forks: 9, views: 350 },
+      difficulty: 'Intermediate',
+      duration: '2 weeks',
     },
     {
       id: '12',
       title: 'Financial Tracker App',
       description: 'A comprehensive financial management Android application that helps users track expenses, manage budgets, and visualize spending patterns. Features include expense categorization, budget planning, and financial reports.',
       image: financialTrackerImg,
-      github: 'https://github.com/Ihsas01/PersonalFinanceTrackerApp',
-      demo: 'https://play.google.com/store/apps/details?id=com.yourusername.financialtracker',
+      github: 'https://github.com/Ihsas01/Financial-Tracker-App',
+      demo: 'https://play.google.com/store/apps/details?id=com.ihsas.financialtracker',
       category: 'mobile',
-      technologies: ['Kotlin', 'XML', 'Android SDK', 'Room Database', 'MPAndroidChart'],
-      featured: true,
-      stats: {
-        stars: 112,
-        forks: 28,
-      },
+      technologies: ['Java', 'Android Studio', 'SQLite', 'Google Play Services'],
+      featured: false,
+      stats: { stars: 45, forks: 12, views: 500 },
+      difficulty: 'Advanced',
+      duration: '2 months',
     },
     {
       id: '13',
       title: 'Online Fruit Store',
-      description: 'A specialized e-commerce platform for fresh fruits and vegetables. Features include product catalog, shopping cart, order management, and delivery tracking system.',
+      description: 'A specialized e-commerce platform for fresh fruits and vegetables. Features include product catalog, shopping cart, order management, and delivery tracking.',
       image: onlineFruitStoreImg,
       github: 'https://github.com/Ihsas01/Online-Fruit-Store',
-      demo: 'https://online-fruit-store.vercel.app',
-      category: 'full-stack',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Redux', 'Stripe'],
-      featured: true,
-      stats: {
-        stars: 85,
-        forks: 22,
-      },
+      demo: 'https://online-fruit-store.000webhostapp.com',
+      category: 'web-mini',
+      technologies: ['PHP', 'MySQL', 'HTML5', 'CSS3', 'JavaScript', 'Bootstrap'],
+      featured: false,
+      stats: { stars: 52, forks: 15, views: 420 },
+      difficulty: 'Intermediate',
+      duration: '1.5 months',
     },
   ];
 
+  // Simulate loading
   useEffect(() => {
-    // Simulate loading state
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    const timer = setTimeout(() => setIsLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
+  // Filter projects
   const filteredProjects = projects.filter(project => {
+    const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = filter === 'all' || project.category === filter;
-    return matchesSearch && matchesCategory;
+                         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
+    return matchesCategory && matchesSearch;
   });
 
   const containerVariants = {
@@ -251,198 +239,257 @@ const Projects = () => {
     }
   };
 
-  const projectVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    },
-    hover: {
-      y: -10,
-      transition: {
-        duration: 0.3,
+        duration: 0.6,
         ease: "easeOut"
       }
     }
   };
 
   return (
-    <motion.div 
-      id="projects" 
-      className="w-full min-h-screen bg-primary text-light py-20"
-      style={{ opacity, scale }}
-    >
-      <div className="max-w-[1200px] mx-auto px-8">
+    <section id="projects" className="section-spacing relative">
+      <div className="container-custom">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold inline border-b-4 border-secondary mb-4">
-            Projects
-          </h2>
-          <p className="py-4 text-tertiary text-lg md:text-xl">
-            Check out some of my recent work
+          <h2 className="heading gradient-text">Featured Projects</h2>
+          <p className="subheading max-w-3xl mx-auto">
+            Here are some of my recent projects that showcase my skills in full-stack development, 
+            web applications, and mobile development.
           </p>
         </motion.div>
 
         {/* Search and Filter */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mb-12 flex flex-col md:flex-row gap-4 items-center justify-between"
+          className="mb-12"
         >
-          <div className="relative flex-1 max-w-md">
-            <input
-              type="text"
-              placeholder="Search projects..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full p-3 pl-10 bg-primary-light/50 border border-tertiary/20 rounded-lg text-light placeholder-tertiary focus:outline-none focus:border-secondary transition-all duration-300 backdrop-blur-sm"
-            />
-            <FaSearch className="absolute left-3 top-3.5 text-tertiary" />
-          </div>
-          <div className="flex gap-2 flex-wrap justify-center">
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setFilter(category)}
-                className={`px-4 py-2 rounded-lg capitalize transition-all duration-300 flex items-center gap-2 backdrop-blur-sm ${
-                  filter === category
-                    ? 'bg-secondary text-primary shadow-lg shadow-secondary/20'
-                    : 'bg-primary-light/50 text-tertiary hover:bg-tertiary/20'
-                }`}
-              >
-                {category === 'mobile' ? <FaMobile size={14} /> : 
-                 category === 'full-stack' ? <FaServer size={14} /> :
-                 category === 'web-mini' ? <FaLaptopCode size={14} /> :
-                 <FaFilter size={14} />}
-                {category}
-              </motion.button>
-            ))}
+          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+            {/* Search Bar */}
+            <div className="relative flex-1 max-w-md">
+              <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-tertiary" />
+              <input
+                type="text"
+                placeholder="Search projects..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="input-field pl-12 w-full"
+              />
+            </div>
+
+            {/* Filter Buttons */}
+            <div className="flex flex-wrap gap-3">
+              {categories.map((category) => (
+                <motion.button
+                  key={category.id}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    selectedCategory === category.id
+                      ? 'bg-secondary text-primary shadow-glow'
+                      : 'bg-white/5 text-tertiary hover:text-secondary hover:bg-white/10 border border-white/10'
+                  }`}
+                >
+                  <category.icon size={16} />
+                  <span>{category.name}</span>
+                  <span className="bg-white/10 px-2 py-0.5 rounded-full text-xs">
+                    {category.count}
+                  </span>
+                </motion.button>
+              ))}
+            </div>
           </div>
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence>
-            {isLoading ? (
-              // Loading skeleton
-              Array.from({ length: 3 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="bg-primary-light/50 rounded-xl overflow-hidden animate-pulse"
-                >
-                  <div className="h-48 bg-tertiary/20" />
-                  <div className="p-6 space-y-4">
-                    <div className="h-6 bg-tertiary/20 rounded w-3/4" />
-                    <div className="space-y-2">
-                      <div className="h-4 bg-tertiary/20 rounded" />
-                      <div className="h-4 bg-tertiary/20 rounded w-5/6" />
-                    </div>
-                  </div>
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <motion.div
+              key="loading"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="grid-auto-fit"
+            >
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="card animate-pulse">
+                  <div className="skeleton h-48 rounded-lg mb-4" />
+                  <div className="skeleton h-6 rounded mb-2" />
+                  <div className="skeleton h-4 rounded mb-2" />
+                  <div className="skeleton h-4 rounded w-3/4" />
                 </div>
-              ))
-            ) : (
-              filteredProjects.map((project) => (
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="projects"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="grid-auto-fit"
+            >
+              {filteredProjects.map((project) => (
                 <motion.div
                   key={project.id}
-                  variants={projectVariants}
-                  whileHover="hover"
+                  variants={cardVariants}
                   layout
-                  className="group relative bg-primary-light/50 rounded-xl overflow-hidden backdrop-blur-sm border border-tertiary/10 hover:border-secondary/30 transition-all duration-300"
+                  className="group relative"
                 >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-bold text-light">{project.title}</h3>
+                  <div className="card card-hover h-full flex flex-col overflow-hidden">
+                    {/* Project Image */}
+                    <div className="relative overflow-hidden rounded-t-2xl">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      
+                      {/* Overlay Actions */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="flex space-x-4">
+                          <motion.a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="bg-secondary text-primary p-3 rounded-full hover:shadow-glow transition-all duration-300"
+                          >
+                            <FaExternalLinkAlt size={20} />
+                          </motion.a>
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300"
+                          >
+                            <FaGithub size={20} />
+                          </motion.a>
+                        </div>
+                      </div>
+
+                      {/* Featured Badge */}
                       {project.featured && (
-                        <span className="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded-full flex items-center gap-1">
-                          <FaStar size={12} />
-                          Featured
-                        </span>
+                        <div className="absolute top-4 left-4">
+                          <span className="badge badge-primary">
+                            <FaHeart size={12} className="mr-1" />
+                            Featured
+                          </span>
+                        </div>
                       )}
-                    </div>
-                    
-                    <p className="text-tertiary mb-4 line-clamp-3">{project.description}</p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 text-xs bg-secondary/20 text-secondary rounded-full"
-                        >
-                          {tech}
+
+                      {/* Stats */}
+                      <div className="absolute top-4 right-4 flex space-x-2">
+                        <span className="badge bg-black/50 text-white text-xs">
+                          <FaStar size={10} className="mr-1" />
+                          {project.stats.stars}
                         </span>
-                      ))}
+                        <span className="badge bg-black/50 text-white text-xs">
+                          <FaEye size={10} className="mr-1" />
+                          {project.stats.views}
+                        </span>
+                      </div>
                     </div>
-                    
-                    <div className="flex justify-between items-center">
-                      <div className="flex gap-4">
+
+                    {/* Project Content */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="text-xl font-bold text-light group-hover:text-secondary transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-tertiary text-sm leading-relaxed mb-4 flex-1">
+                        {project.description}
+                      </p>
+
+                      {/* Project Meta */}
+                      <div className="flex items-center justify-between mb-4 text-xs text-tertiary">
+                        <span className="badge badge-secondary">
+                          {project.difficulty}
+                        </span>
+                        <span>{project.duration}</span>
+                      </div>
+
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.slice(0, 4).map((tech, index) => (
+                          <span
+                            key={index}
+                            className="text-xs bg-white/5 text-tertiary px-2 py-1 rounded border border-white/10"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                        {project.technologies.length > 4 && (
+                          <span className="text-xs text-tertiary px-2 py-1">
+                            +{project.technologies.length - 4} more
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex space-x-3 mt-auto">
                         <motion.a
-                          whileHover={{ scale: 1.1, y: -2 }}
-                          whileTap={{ scale: 0.95 }}
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-light hover:text-secondary transition-colors"
-                        >
-                          <FaGithub size={20} />
-                        </motion.a>
-                        <motion.a
-                          whileHover={{ scale: 1.1, y: -2 }}
-                          whileTap={{ scale: 0.95 }}
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-light hover:text-secondary transition-colors"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="btn-primary flex-1 text-center text-sm py-2"
                         >
-                          <FaExternalLinkAlt size={20} />
+                          Live Demo
                         </motion.a>
-                      </div>
-                      
-                      <div className="flex items-center gap-4 text-tertiary text-sm">
-                        <span className="flex items-center gap-1">
-                          <FaStar size={14} />
-                          {project.stats.stars}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <FaCode size={14} />
-                          {project.stats.forks}
-                        </span>
+                        <motion.a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="btn-secondary flex-1 text-center text-sm py-2"
+                        >
+                          Code
+                        </motion.a>
                       </div>
                     </div>
                   </div>
                 </motion.div>
-              ))
-            )}
-          </AnimatePresence>
-        </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Empty State */}
+        {!isLoading && filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-16"
+          >
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-2xl font-bold text-light mb-2">No projects found</h3>
+            <p className="text-tertiary">Try adjusting your search or filter criteria.</p>
+          </motion.div>
+        )}
       </div>
-    </motion.div>
+    </section>
   );
 };
 
