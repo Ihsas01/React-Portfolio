@@ -1,13 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaArrowDown, FaDownload, FaEnvelope } from 'react-icons/fa';
-import * as THREE from 'three';
 import profileImg from '../assets/profile.jpeg';
 import AnimatedText from './AnimatedText';
 import { fadeIn, staggerContainer, scaleIn } from '../types/animations';
 
 const Hero = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -70,85 +68,6 @@ const Hero = () => {
     };
   }, [isMobile]);
 
-  useEffect(() => {
-    if (!containerRef.current || isMobile) return;
-
-    // Three.js setup with enhanced particles (desktop only)
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ 
-      alpha: true,
-      antialias: true 
-    });
-    
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    containerRef.current.appendChild(renderer.domElement);
-
-    // Create enhanced particles
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = isMobile ? 500 : 2000;
-    const posArray = new Float32Array(particlesCount * 3);
-    const colorArray = new Float32Array(particlesCount * 3);
-
-    for (let i = 0; i < particlesCount * 3; i += 3) {
-      posArray[i] = (Math.random() - 0.5) * 10;
-      posArray[i + 1] = (Math.random() - 0.5) * 10;
-      posArray[i + 2] = (Math.random() - 0.5) * 10;
-      
-      // Color variation
-      const color = new THREE.Color();
-      color.setHSL(Math.random() * 0.1 + 0.5, 0.8, 0.6);
-      colorArray[i] = color.r;
-      colorArray[i + 1] = color.g;
-      colorArray[i + 2] = color.b;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending,
-    });
-
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-
-    camera.position.z = 3;
-
-    // Enhanced animation with mouse interaction
-    const animate = () => {
-      requestAnimationFrame(animate);
-      particlesMesh.rotation.x += 0.0005;
-      particlesMesh.rotation.y += 0.0005;
-      
-      // Mouse interaction
-      particlesMesh.rotation.x += mousePosition.y * 0.0001;
-      particlesMesh.rotation.y += mousePosition.x * 0.0001;
-      
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      containerRef.current?.removeChild(renderer.domElement);
-    };
-  }, [mousePosition, isMobile]);
-
   const socialLinks = [
     {
       icon: FaGithub,
@@ -182,9 +101,6 @@ const Hero = () => {
       className="w-full min-h-screen relative overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8"
       style={{ opacity, scale, y }}
     >
-      {/* Background Particles */}
-      {!isMobile && <div ref={containerRef} className="absolute inset-0" />}
-      
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/50 via-transparent to-primary/30" />
       

@@ -3,6 +3,7 @@ import * as THREE from 'three';
 
 const AnimatedBackground = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number>();
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -77,7 +78,7 @@ const AnimatedBackground = () => {
 
     // Animation
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationRef.current = requestAnimationFrame(animate);
 
       // Update time uniform
       particlesMaterial.uniforms.time.value += 0.01;
@@ -101,12 +102,28 @@ const AnimatedBackground = () => {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      // Cancel animation frame
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+
+      // Remove event listeners
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
-      containerRef.current?.removeChild(renderer.domElement);
+
+      // Remove DOM element
+      if (containerRef.current && renderer.domElement) {
+        containerRef.current.removeChild(renderer.domElement);
+      }
+
+      // Dispose of Three.js resources
       scene.remove(particlesMesh);
       particlesGeometry.dispose();
       particlesMaterial.dispose();
+      renderer.dispose();
+      
+      // Clear scene
+      scene.clear();
     };
   }, []);
 
