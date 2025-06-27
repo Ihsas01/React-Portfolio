@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaArrowDown, FaDownload, FaEnvelope } from 'react-icons/fa';
-import profileImg from '../assets/profile.jpeg';
+import * as THREE from 'three';
+import profileImg from '../assets/profile.jpg';
 import AnimatedText from './AnimatedText';
 import { fadeIn, staggerContainer, scaleIn } from '../types/animations';
 
