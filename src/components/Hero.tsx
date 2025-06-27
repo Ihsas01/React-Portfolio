@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaArrowDown, FaDownload, FaEnvelope } from 'react-icons/fa';
 import profileImg from '../assets/profile.jpg';
+import cvPdf from '../assets/Ihsas.pdf';
 import AnimatedText from './AnimatedText';
 import { fadeIn, staggerContainer, scaleIn } from '../types/animations';
 
@@ -200,7 +201,7 @@ const Hero = () => {
               </motion.a>
               
               <motion.a
-                href="/resume.pdf"
+                href={cvPdf}
                 download
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
