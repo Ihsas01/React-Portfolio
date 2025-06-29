@@ -30,36 +30,36 @@ const Skills: React.FC = () => {
     { 
       name: 'React', 
       icon: <FaReact size={40} />, 
-      level: 90, 
+      level: 70, 
       color: '#61DAFB',
       description: 'Building modern, responsive user interfaces with React and its ecosystem',
-      years: 3,
+      years: 2,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 15,
+      projects: 8,
       certifications: ['React Developer Certification']
     },
     { 
       name: 'TypeScript', 
       icon: <SiTypescript size={40} />, 
-      level: 85, 
+      level: 75, 
       color: '#3178C6',
       description: 'Developing type-safe applications with TypeScript',
       years: 2,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 12
+      projects: 8
     },
     { 
       name: 'JavaScript', 
       icon: <FaJs size={40} />, 
-      level: 95, 
+      level: 90, 
       color: '#F7DF1E',
       description: 'Expert in modern JavaScript (ES6+) and its best practices',
-      years: 4,
+      years: 3,
       category: 'frontend',
       experience: 'Expert',
-      projects: 25
+      projects: 15
     },
     { 
       name: 'HTML5', 
@@ -70,75 +70,75 @@ const Skills: React.FC = () => {
       years: 4,
       category: 'frontend',
       experience: 'Expert',
-      projects: 30
+      projects: 20
     },
     { 
       name: 'CSS3', 
       icon: <FaCss3Alt size={40} />, 
-      level: 90, 
+      level: 95, 
       color: '#1572B6',
       description: 'Creating responsive and animated user interfaces',
-      years: 4,
+      years: 3,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 28
+      projects: 22
     },
     { 
       name: 'Tailwind CSS', 
       icon: <SiTailwindcss size={40} />, 
-      level: 92, 
+      level: 80, 
       color: '#06B6D4',
       description: 'Building modern UIs with utility-first CSS',
       years: 2,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 18
+      projects: 12
     },
     { 
       name: 'Next.js', 
       icon: <SiNextdotjs size={40} />, 
-      level: 80, 
+      level: 65, 
       color: '#000000',
       description: 'Full-stack React framework for production',
       years: 1,
       category: 'frontend',
       experience: 'Intermediate',
-      projects: 8
+      projects: 4
     },
     { 
       name: 'Framer Motion', 
       icon: <SiFramer size={40} />, 
-      level: 85, 
+      level: 25, 
       color: '#0055FF',
       description: 'Creating smooth animations and interactions',
       years: 2,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 14
+      projects: 8
     },
 
     // Backend
     { 
       name: 'Node.js', 
       icon: <FaNodeJs size={40} />, 
-      level: 88, 
+      level: 80, 
       color: '#339933',
       description: 'Building scalable backend services with Node.js',
-      years: 3,
+      years: 2,
       category: 'backend',
       experience: 'Advanced',
-      projects: 12
+      projects: 7
     },
     { 
       name: 'Express.js', 
       icon: <SiExpress size={40} />, 
-      level: 87, 
+      level: 75, 
       color: '#000000',
       description: 'Creating RESTful APIs and middleware with Express',
-      years: 3,
+      years: 1,
       category: 'backend',
       experience: 'Advanced',
-      projects: 10
+      projects: 5
     },
     { 
       name: 'PHP', 
@@ -149,23 +149,23 @@ const Skills: React.FC = () => {
       years: 3,
       category: 'backend',
       experience: 'Advanced',
-      projects: 16
+      projects: 10
     },
     { 
       name: 'Redux', 
       icon: <SiRedux size={40} />, 
-      level: 88, 
+      level: 50, 
       color: '#764ABC',
       description: 'State management and predictable data flow',
-      years: 2,
+      years: 1,
       category: 'backend',
       experience: 'Advanced',
-      projects: 9
+      projects: 2
     },
     { 
       name: 'Vite', 
       icon: <SiVite size={40} />, 
-      level: 80, 
+      level: 70, 
       color: '#646CFF',
       description: 'Fast build tool and development server',
       years: 1,
@@ -176,26 +176,26 @@ const Skills: React.FC = () => {
     { 
       name: 'REST APIs', 
       icon: <FaServer size={40} />, 
-      level: 90, 
+      level: 60, 
       color: '#4A90E2',
       description: 'Designing and implementing RESTful APIs',
-      years: 3,
+      years: 2,
       category: 'backend',
       experience: 'Advanced',
-      projects: 15
+      projects: 5
     },
 
     // Database
     { 
       name: 'MongoDB', 
       icon: <SiMongodb size={40} />, 
-      level: 85, 
+      level: 78, 
       color: '#47A248',
       description: 'Designing and optimizing NoSQL databases',
-      years: 2,
+      years: 1,
       category: 'database',
       experience: 'Advanced',
-      projects: 8
+      projects: 5
     },
     { 
       name: 'MySQL', 
@@ -206,7 +206,7 @@ const Skills: React.FC = () => {
       years: 2,
       category: 'database',
       experience: 'Intermediate',
-      projects: 12
+      projects: 9
     },
     { 
       name: 'SQLite', 
@@ -235,7 +235,7 @@ const Skills: React.FC = () => {
     { 
       name: 'Docker', 
       icon: <FaDocker size={40} />, 
-      level: 70, 
+      level: 20, 
       color: '#2496ED',
       description: 'Containerization and deployment',
       years: 1,
@@ -246,13 +246,13 @@ const Skills: React.FC = () => {
     { 
       name: 'AWS', 
       icon: <FaAws size={40} />, 
-      level: 75, 
+      level: 60, 
       color: '#FF9900',
       description: 'Cloud services and deployment',
       years: 1,
       category: 'tools',
       experience: 'Intermediate',
-      projects: 6
+      projects: 3
     }
   ];
 
