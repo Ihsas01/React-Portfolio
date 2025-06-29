@@ -44,22 +44,33 @@ const About: React.FC = () => {
 
   const education = [
     {
-      year: '2019 - 2023',
-      degree: 'Bachelor of Science in Computer Science',
-      institution: 'University of Technology',
+      year: '2023 - 2025',
+      degree: 'Diploma in Computer Hardware',
+      institution: 'Technical Center.',
       location: 'Colombo, Sri Lanka',
-      description: 'Studied computer science fundamentals, algorithms, data structures, and software engineering principles.',
-      achievements: ['Graduated with honors', 'Dean\'s list 3 years', 'Final year project award'],
-      gpa: '3.8/4.0'
+      description: 'Completed Diploma in Computer Hardware',
+      achievements: ['Technical Team Member.'],
+      
+
     },
     {
-      year: '2017 - 2019',
-      degree: 'High School Diploma',
-      institution: 'Science High School',
+      year: '2023 - 2025',
+      degree: 'Higher Diploma',
+      institution: 'SLIIT',
       location: 'Colombo, Sri Lanka',
-      description: 'Completed high school with focus on mathematics and sciences.',
-      achievements: ['Top 10% of class', 'Science fair winner', 'Student council member'],
-      gpa: '3.9/4.0'
+      description: 'Completed Higher Diploma in Information Technology',
+      achievements: ['Student council member'],
+      gpa: '2.8/4.0'
+    },
+    {
+      year: '2025 - 2027',
+      degree: 'Reading for a Degree in Information Technology',
+      institution: 'SLIIT',
+      location: 'Colombo, Sri Lanka',
+      description: 'Currently pursuing a Degree in Information Technology',
+      achievements: ['Pending'],
+      gpa: 'N/A'
+
     }
   ];
 
