@@ -220,11 +220,11 @@ const About: React.FC = () => {
                       <div className="text-xs sm:text-sm text-tertiary">Years Experience</div>
                     </div>
                     <div className="card text-center p-3 sm:p-4">
-                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">25+</div>
+                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">70+</div>
                       <div className="text-xs sm:text-sm text-tertiary">Projects Completed</div>
                     </div>
                     <div className="card text-center p-3 sm:p-4 col-span-2 sm:col-span-1">
-                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">15+</div>
+                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">20+</div>
                       <div className="text-xs sm:text-sm text-tertiary">Technologies</div>
                     </div>
                   </div>
