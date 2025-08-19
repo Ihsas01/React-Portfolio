@@ -165,7 +165,7 @@ const Skills: React.FC = () => {
     { 
       name: 'Vite', 
       icon: <SiVite size={40} />, 
-      level: 70, 
+      level: 60, 
       color: '#646CFF',
       description: 'Fast build tool and development server',
       years: 1,
@@ -224,7 +224,7 @@ const Skills: React.FC = () => {
     { 
       name: 'Git', 
       icon: <FaGitAlt size={40} />, 
-      level: 85, 
+      level: 80, 
       color: '#F05032',
       description: 'Version control and collaborative development',
       years: 3,
