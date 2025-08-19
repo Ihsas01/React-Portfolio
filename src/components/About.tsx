@@ -166,24 +166,23 @@ const About: React.FC = () => {
       gpa: "N/A",
     },
     {
-  year: "Present",
-  degree: "Part-time/short-term coding and IT certifications",
-  institution: "Online",
-  location: "Remote ( Online)",
-  description: "Completed Diploma in Computer Hardware with hands-on training and practical projects.",
-  achievements: [
-  
-    "Completed various IT and coding certifications including:",
-    "• Web Development - University of Moratuwa (UOM)",
-    "• Python - University of Moratuwa (UOM)",
-    "• Information Security - Saylor Academy",
-    "• Operating System Fundamentals - Saylor Academy",
-    "• C++ Essentials - Cisco",
-    "• Responsive Web Design - freeCodeCamp",
-    "• Introduction to Cyber Security - Cisco"
-  ]
-}
-
+      year: "Present",
+      degree: "Part-time/short-term coding and IT certifications",
+      institution: "Online",
+      location: "Remote ( Online)",
+      description:
+        "Completed Diploma in Computer Hardware with hands-on training and practical projects.",
+      achievements: [
+        "Completed various IT and coding certifications including:",
+        "• Web Development - University of Moratuwa (UOM)",
+        "• Python - University of Moratuwa (UOM)",
+        "• Information Security - Saylor Academy",
+        "• Operating System Fundamentals - Saylor Academy",
+        "• C++ Essentials - Cisco",
+        "• Responsive Web Design - freeCodeCamp",
+        "• Introduction to Cyber Security - Cisco",
+      ],
+    },
   ];
 
   const values = [
