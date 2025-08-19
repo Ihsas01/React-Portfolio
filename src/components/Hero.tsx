@@ -197,9 +197,10 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-tertiary text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0"
             >
-              I'm a passionate full-stack developer specializing in building
+              I'm a passionate Full Stack Developer, Web Designer, UI/UX
+              Designer, and Mobile App Developer, specializing in building
               exceptional digital experiences. Currently, I'm focused on
-              building accessible, human-centered products that make a
+              creating accessible, human-centered products that make a
               difference.
             </motion.p>
 
