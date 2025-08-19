@@ -30,7 +30,7 @@ const Skills: React.FC = () => {
     { 
       name: 'React', 
       icon: <FaReact size={40} />, 
-      level: 70, 
+      level: 60, 
       color: '#61DAFB',
       description: 'Building modern, responsive user interfaces with React and its ecosystem',
       years: 2,
@@ -42,7 +42,7 @@ const Skills: React.FC = () => {
     { 
       name: 'TypeScript', 
       icon: <SiTypescript size={40} />, 
-      level: 75, 
+      level: 65, 
       color: '#3178C6',
       description: 'Developing type-safe applications with TypeScript',
       years: 2,
@@ -53,7 +53,7 @@ const Skills: React.FC = () => {
     { 
       name: 'JavaScript', 
       icon: <FaJs size={40} />, 
-      level: 90, 
+      level: 75, 
       color: '#F7DF1E',
       description: 'Expert in modern JavaScript (ES6+) and its best practices',
       years: 3,
@@ -86,7 +86,7 @@ const Skills: React.FC = () => {
     { 
       name: 'Tailwind CSS', 
       icon: <SiTailwindcss size={40} />, 
-      level: 80, 
+      level: 70, 
       color: '#06B6D4',
       description: 'Building modern UIs with utility-first CSS',
       years: 2,
@@ -108,7 +108,7 @@ const Skills: React.FC = () => {
     { 
       name: 'Framer Motion', 
       icon: <SiFramer size={40} />, 
-      level: 25, 
+      level: 20, 
       color: '#0055FF',
       description: 'Creating smooth animations and interactions',
       years: 2,
@@ -121,7 +121,7 @@ const Skills: React.FC = () => {
     { 
       name: 'Node.js', 
       icon: <FaNodeJs size={40} />, 
-      level: 80, 
+      level: 70, 
       color: '#339933',
       description: 'Building scalable backend services with Node.js',
       years: 2,
@@ -132,7 +132,7 @@ const Skills: React.FC = () => {
     { 
       name: 'Express.js', 
       icon: <SiExpress size={40} />, 
-      level: 75, 
+      level: 65, 
       color: '#000000',
       description: 'Creating RESTful APIs and middleware with Express',
       years: 1,
@@ -143,7 +143,7 @@ const Skills: React.FC = () => {
     { 
       name: 'PHP', 
       icon: <SiPhp size={40} />, 
-      level: 85, 
+      level: 80, 
       color: '#777BB4',
       description: 'Server-side scripting and web development',
       years: 3,
@@ -154,7 +154,7 @@ const Skills: React.FC = () => {
     { 
       name: 'Redux', 
       icon: <SiRedux size={40} />, 
-      level: 50, 
+      level: 40, 
       color: '#764ABC',
       description: 'State management and predictable data flow',
       years: 1,
@@ -189,7 +189,7 @@ const Skills: React.FC = () => {
     { 
       name: 'MongoDB', 
       icon: <SiMongodb size={40} />, 
-      level: 78, 
+      level: 75, 
       color: '#47A248',
       description: 'Designing and optimizing NoSQL databases',
       years: 1,
@@ -200,7 +200,7 @@ const Skills: React.FC = () => {
     { 
       name: 'MySQL', 
       icon: <SiMysql size={40} />, 
-      level: 80, 
+      level: 75, 
       color: '#4479A1',
       description: 'Relational database management and optimization',
       years: 2,
@@ -211,7 +211,7 @@ const Skills: React.FC = () => {
     { 
       name: 'SQLite', 
       icon: <FaDatabase size={40} />, 
-      level: 75, 
+      level: 70, 
       color: '#003B57',
       description: 'Lightweight database for mobile and web apps',
       years: 1,
@@ -246,7 +246,7 @@ const Skills: React.FC = () => {
     { 
       name: 'AWS', 
       icon: <FaAws size={40} />, 
-      level: 60, 
+      level: 50, 
       color: '#FF9900',
       description: 'Cloud services and deployment',
       years: 1,
