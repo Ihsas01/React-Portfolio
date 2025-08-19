@@ -229,9 +229,9 @@ const About: React.FC = () => {
         >
           <h2 className="heading gradient-text">About Me</h2>
           <p className="subheading max-w-3xl mx-auto">
-            I'm a passionate full-stack developer who loves creating meaningful
-            digital experiences. Let me tell you a bit more about my journey and
-            what drives me.
+            I'm a passionate full-stack developer skilled in web design, UI/UX,
+            and mobile app development. I enjoy creating responsive,
+            user-friendly, and meaningful digital experiences.
           </p>
         </motion.div>
 
@@ -319,11 +319,12 @@ const About: React.FC = () => {
                       Passionate Developer
                     </h3>
                     <p className="text-tertiary leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">
-                      I'm a dedicated full-stack developer with a passion for
-                      creating exceptional digital experiences. With over 2+
-                      years of experience in web development, I specialize in
-                      building modern, scalable applications that solve
-                      real-world problems.
+                      I'm a dedicated full-stack developer passionate about
+                      crafting impactful digital experiences. With over 2 years
+                      of hands-on experience in web design, UI/UX, and mobile
+                      app development, I specialize in building modern,
+                      scalable, and user-friendly applications that solve
+                      real-world challenges.
                     </p>
                     <p className="text-tertiary leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">
                       My journey in technology started with curiosity and has
