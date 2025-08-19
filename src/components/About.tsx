@@ -139,12 +139,22 @@ const About: React.FC = () => {
     },
     {
       year: "2023 - 2025",
-      degree: "Higher Diploma",
+      degree: "Higher National Diploma (HND) in Information Technology",
       institution: "SLIIT",
       location: "Colombo, Sri Lanka",
-      description: "Completed Higher Diploma in Information Technology",
-      achievements: ["Student council member"],
-      gpa: "2.8/4.0",
+      description:
+        "Pursuing Higher National Diploma in Information Technology with focus on  full stack web development, software development, database management, and mobile application development.",
+      achievements: [
+        "Active student council member",
+        "Successfully completed multiple academic and group projects (Web, Mobile, and MERN stack)",
+        "Developed Finance Tracker mobile app as final year project using Kotlin & Firebase",
+        "Contributed as front-end developer in FreshCo Online Grocery System (Java, MySQL)",
+        "Built Online Laundry Service project with PHP and MySQL (XAMPP)",
+        "Participated in coding competitions and hackathons organized by SLIIT",
+        "Collaborated with peers to deliver innovative IT solutions during coursework",
+        "Improved leadership and teamwork skills through group project coordination",
+      ],
+      gpa: "2.8 / 4.0",
     },
     {
       year: "Pending",
@@ -155,6 +165,25 @@ const About: React.FC = () => {
       achievements: ["Pending"],
       gpa: "N/A",
     },
+    {
+  year: "Present",
+  degree: "Part-time/short-term coding and IT certifications",
+  institution: "Online",
+  location: "Remote ( Online)",
+  description: "Completed Diploma in Computer Hardware with hands-on training and practical projects.",
+  achievements: [
+  
+    "Completed various IT and coding certifications including:",
+    "• Web Development - University of Moratuwa (UOM)",
+    "• Python - University of Moratuwa (UOM)",
+    "• Information Security - Saylor Academy",
+    "• Operating System Fundamentals - Saylor Academy",
+    "• C++ Essentials - Cisco",
+    "• Responsive Web Design - freeCodeCamp",
+    "• Introduction to Cyber Security - Cisco"
+  ]
+}
+
   ];
 
   const values = [
