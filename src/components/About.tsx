@@ -299,7 +299,38 @@ const About: React.FC = () => {
                           Ihsas Ifthikar
                         </h3>
                         <p className="text-tertiary text-sm sm:text-base">
-                          Full Stack Developer
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                            className="text-tertiary text-sm sm:text-base"
+                          >
+                            Full Stack Developer
+                          </motion.div>
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1 }}
+                            className="text-tertiary text-sm sm:text-base"
+                          >
+                            Web Designer
+                          </motion.div>
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.5 }}
+                            className="text-tertiary text-sm sm:text-base"
+                          >
+                            UI/UX Designer
+                          </motion.div>
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 2 }}
+                            className="text-tertiary text-sm sm:text-base"
+                          >
+                            Mobile App Developer
+                          </motion.div>
                         </p>
                       </div>
                     </div>
