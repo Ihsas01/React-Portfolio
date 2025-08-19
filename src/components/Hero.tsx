@@ -1,51 +1,87 @@
-import { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaArrowDown, FaDownload, FaEnvelope } from 'react-icons/fa';
-import profileImg from '../assets/profile.jpg';
-import cvPdf from '../assets/Ihsas.pdf';
-import AnimatedText from './AnimatedText';
-import { fadeIn, staggerContainer, scaleIn } from '../types/animations';
+import { useEffect, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaArrowDown,
+  FaDownload,
+  FaEnvelope,
+} from "react-icons/fa";
+import profileImg from "../assets/profile.jpg";
+import cvPdf from "../assets/Ihsas.pdf";
+import AnimatedText from "./AnimatedText";
+import { fadeIn, staggerContainer, scaleIn } from "../types/animations";
+
+const AnimatedRoles = () => {
+  const roles = [
+    "Full Stack Developer",
+    "Web Designer",
+    "UI/UX Designer",
+    "Mobile App Developer",
+  ];
+
+  const [currentRole, setCurrentRole] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.span
+        key={currentRole}
+        className="text-secondary relative inline-block"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.5 }}
+      >
+        {roles[currentRole]}
+      </motion.span>
+    </AnimatePresence>
+  );
+};
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
 
-  // Check if device is mobile
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Mouse move effect for profile image (desktop only)
   useEffect(() => {
     if (isMobile) return;
-
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth - 0.5) * 20,
         y: (e.clientY / window.innerHeight - 0.5) * 20,
       });
     };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [isMobile]);
 
-  // Touch effect for mobile
   useEffect(() => {
     if (!isMobile) return;
-
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
         const touch = e.touches[0];
@@ -55,17 +91,12 @@ const Hero = () => {
         });
       }
     };
-
-    const handleTouchEnd = () => {
-      setMousePosition({ x: 0, y: 0 });
-    };
-
-    window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', handleTouchEnd);
-    
+    const handleTouchEnd = () => setMousePosition({ x: 0, y: 0 });
+    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("touchend", handleTouchEnd);
     return () => {
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isMobile]);
 
@@ -74,50 +105,47 @@ const Hero = () => {
       icon: FaGithub,
       href: "https://github.com/Ihsas01",
       label: "GitHub",
-      color: "hover:text-gray-400"
+      color: "hover:text-gray-400",
     },
     {
       icon: FaLinkedin,
       href: "https://www.linkedin.com/in/mohamed-ihsas-2a928a2b7",
       label: "LinkedIn",
-      color: "hover:text-blue-400"
+      color: "hover:text-blue-400",
     },
     {
       icon: FaTwitter,
       href: "https://twitter.com",
       label: "Twitter",
-      color: "hover:text-blue-400"
+      color: "hover:text-blue-400",
     },
     {
       icon: FaEnvelope,
       href: "mailto:ihsas@example.com",
       label: "Email",
-      color: "hover:text-red-400"
-    }
+      color: "hover:text-red-400",
+    },
   ];
 
   return (
-    <motion.section 
-      id="home" 
+    <motion.section
+      id="home"
       className="w-full min-h-screen relative overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8"
       style={{ opacity, scale, y }}
     >
-      {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/50 via-transparent to-primary/30" />
-      
-      <motion.div 
+      <motion.div
         className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-20 relative z-10 w-full"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
       >
         {/* Left: Text Content */}
-        <motion.div 
+        <motion.div
           className="flex-1 w-full text-center lg:text-left order-2 lg:order-1"
           variants={fadeIn}
         >
           <div className="space-y-4 sm:space-y-6">
-            {/* Greeting */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -139,7 +167,6 @@ const Hero = () => {
               />
             </motion.div>
 
-            {/* Name */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -152,23 +179,14 @@ const Hero = () => {
               </h1>
             </motion.div>
 
-            {/* Title */}
+            {/* Updated Title with Animated Roles */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-tertiary">
-                I'm a{' '}
-                <span className="text-secondary relative">
-                  Full Stack Developer
-                  <motion.span
-                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary"
-                    initial={{ width: 0 }}
-                    animate={{ width: '100%' }}
-                    transition={{ duration: 1, delay: 1 }}
-                  />
-                </span>
+                I'm a <AnimatedRoles />
               </h2>
             </motion.div>
 
@@ -179,8 +197,10 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-tertiary text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0"
             >
-              I'm a passionate full-stack developer specializing in building exceptional digital experiences. 
-              Currently, I'm focused on building accessible, human-centered products that make a difference.
+              I'm a passionate full-stack developer specializing in building
+              exceptional digital experiences. Currently, I'm focused on
+              building accessible, human-centered products that make a
+              difference.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -199,7 +219,7 @@ const Hero = () => {
                 <span>View My Work</span>
                 <FaArrowDown className="text-sm" />
               </motion.a>
-              
+
               <motion.a
                 href={cvPdf}
                 download
@@ -241,11 +261,11 @@ const Hero = () => {
         </motion.div>
 
         {/* Right: Profile Photo */}
-        <motion.div 
+        <motion.div
           className="flex-1 w-full flex justify-center items-center order-1 lg:order-2"
           variants={scaleIn}
         >
-          <motion.div 
+          <motion.div
             className="relative group"
             onHoverStart={() => !isMobile && setIsHovered(true)}
             onHoverEnd={() => !isMobile && setIsHovered(false)}
@@ -257,10 +277,7 @@ const Hero = () => {
             }}
             transition={{ type: "spring", stiffness: 100, damping: 10 }}
           >
-            {/* Glow Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-secondary via-accent to-secondary rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse" />
-            
-            {/* Profile Image */}
             <motion.div
               className="relative z-10"
               whileHover={{ scale: 1.05 }}
@@ -273,8 +290,7 @@ const Hero = () => {
                 className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full object-cover border-4 border-secondary shadow-2xl bg-primary relative z-10 transition-all duration-500 group-hover:border-accent group-hover:shadow-glow-lg"
                 draggable={false}
               />
-              
-              {/* Floating Elements */}
+
               <AnimatePresence>
                 {isHovered && (
                   <>
@@ -323,12 +339,14 @@ const Hero = () => {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="text-secondary cursor-pointer bg-white/5 p-2 sm:p-3 rounded-full hover:bg-white/10 hover:shadow-glow transition-all duration-300 border border-white/10"
-          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+          onClick={() =>
+            window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
+          }
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+            if (e.key === "Enter" || e.key === " ") {
+              window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
             }
           }}
         >
@@ -339,4 +357,4 @@ const Hero = () => {
   );
 };
 
-export default Hero; 
+export default Hero;
