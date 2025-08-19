@@ -36,7 +36,7 @@ const Skills: React.FC = () => {
       years: 2,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 8,
+      projects: 3,
       certifications: ['React Developer Certification']
     },
     { 
@@ -48,7 +48,7 @@ const Skills: React.FC = () => {
       years: 2,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 8
+      projects: 2
     },
     { 
       name: 'JavaScript', 
@@ -59,7 +59,7 @@ const Skills: React.FC = () => {
       years: 3,
       category: 'frontend',
       experience: 'Expert',
-      projects: 15
+      projects: 8
     },
     { 
       name: 'HTML5', 
@@ -81,7 +81,7 @@ const Skills: React.FC = () => {
       years: 3,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 22
+      projects: 20
     },
     { 
       name: 'Tailwind CSS', 
@@ -92,7 +92,7 @@ const Skills: React.FC = () => {
       years: 2,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 12
+      projects: 5
     },
     { 
       name: 'Next.js', 
@@ -103,7 +103,7 @@ const Skills: React.FC = () => {
       years: 1,
       category: 'frontend',
       experience: 'Intermediate',
-      projects: 4
+      projects: 2
     },
     { 
       name: 'Framer Motion', 
@@ -114,7 +114,7 @@ const Skills: React.FC = () => {
       years: 2,
       category: 'frontend',
       experience: 'Advanced',
-      projects: 8
+      projects: 0
     },
 
     // Backend
@@ -127,7 +127,7 @@ const Skills: React.FC = () => {
       years: 2,
       category: 'backend',
       experience: 'Advanced',
-      projects: 7
+      projects: 2
     },
     { 
       name: 'Express.js', 
@@ -138,7 +138,7 @@ const Skills: React.FC = () => {
       years: 1,
       category: 'backend',
       experience: 'Advanced',
-      projects: 5
+      projects: 4
     },
     { 
       name: 'PHP', 
@@ -149,7 +149,7 @@ const Skills: React.FC = () => {
       years: 3,
       category: 'backend',
       experience: 'Advanced',
-      projects: 10
+      projects: 8
     },
     { 
       name: 'Redux', 
@@ -160,7 +160,7 @@ const Skills: React.FC = () => {
       years: 1,
       category: 'backend',
       experience: 'Advanced',
-      projects: 2
+      projects: 0
     },
     { 
       name: 'Vite', 
@@ -171,7 +171,7 @@ const Skills: React.FC = () => {
       years: 1,
       category: 'backend',
       experience: 'Intermediate',
-      projects: 6
+      projects: 5
     },
     { 
       name: 'REST APIs', 
@@ -182,7 +182,7 @@ const Skills: React.FC = () => {
       years: 2,
       category: 'backend',
       experience: 'Advanced',
-      projects: 5
+      projects: 2
     },
 
     // Database
@@ -195,7 +195,7 @@ const Skills: React.FC = () => {
       years: 1,
       category: 'database',
       experience: 'Advanced',
-      projects: 5
+      projects: 3
     },
     { 
       name: 'MySQL', 
@@ -206,7 +206,7 @@ const Skills: React.FC = () => {
       years: 2,
       category: 'database',
       experience: 'Intermediate',
-      projects: 9
+      projects: 5
     },
     { 
       name: 'SQLite', 
@@ -217,7 +217,7 @@ const Skills: React.FC = () => {
       years: 1,
       category: 'database',
       experience: 'Intermediate',
-      projects: 5
+      projects: 4
     },
 
     // Tools
@@ -230,7 +230,7 @@ const Skills: React.FC = () => {
       years: 3,
       category: 'tools',
       experience: 'Advanced',
-      projects: 25
+      projects: 20
     },
     { 
       name: 'Docker', 
@@ -241,7 +241,7 @@ const Skills: React.FC = () => {
       years: 1,
       category: 'tools',
       experience: 'Intermediate',
-      projects: 4
+      projects: 0
     },
     { 
       name: 'AWS', 
