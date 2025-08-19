@@ -198,7 +198,7 @@ const About: React.FC = () => {
                     <h3 className="text-xl sm:text-2xl font-bold text-light mb-3 sm:mb-4">Passionate Developer</h3>
                     <p className="text-tertiary leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">
                       I'm a dedicated full-stack developer with a passion for creating exceptional digital experiences. 
-                      With over 4 years of experience in web development, I specialize in building modern, scalable applications 
+                      With over 2+ years of experience in web development, I specialize in building modern, scalable applications 
                       that solve real-world problems.
                     </p>
                     <p className="text-tertiary leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">
@@ -216,15 +216,15 @@ const About: React.FC = () => {
                   {/* Quick Stats */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                     <div className="card text-center p-3 sm:p-4">
-                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">4+</div>
+                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">2+</div>
                       <div className="text-xs sm:text-sm text-tertiary">Years Experience</div>
                     </div>
                     <div className="card text-center p-3 sm:p-4">
-                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">70+</div>
+                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">10+</div>
                       <div className="text-xs sm:text-sm text-tertiary">Projects Completed</div>
                     </div>
                     <div className="card text-center p-3 sm:p-4 col-span-2 sm:col-span-1">
-                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">20+</div>
+                      <div className="text-xl sm:text-2xl font-bold text-secondary mb-1">5+</div>
                       <div className="text-xs sm:text-sm text-tertiary">Technologies</div>
                     </div>
                   </div>
