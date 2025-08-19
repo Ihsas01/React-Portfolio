@@ -147,7 +147,7 @@ const About: React.FC = () => {
       gpa: "2.8/4.0",
     },
     {
-      year: "2025 - 2027",
+      year: "Pending",
       degree: "Reading for a Degree in Information Technology",
       institution: "SLIIT",
       location: "Colombo, Sri Lanka",
