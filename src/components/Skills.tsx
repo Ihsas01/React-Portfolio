@@ -67,7 +67,7 @@ const Skills: React.FC = () => {
       level: 95, 
       color: '#E34F26',
       description: 'Writing semantic and accessible HTML markup',
-      years: 4,
+      years: 2,
       category: 'frontend',
       experience: 'Expert',
       projects: 20
@@ -78,7 +78,7 @@ const Skills: React.FC = () => {
       level: 95, 
       color: '#1572B6',
       description: 'Creating responsive and animated user interfaces',
-      years: 3,
+      years: 2,
       category: 'frontend',
       experience: 'Advanced',
       projects: 20
