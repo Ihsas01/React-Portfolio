@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ScrollToTop from './components/ScrollToTop';
+import WhatsAppButton from './components/WhatsAppButton';
 import LoadingScreen from './components/LoadingScreen';
 import ReadingProgress from './components/ReadingProgress';
 import CursorFollower from './components/CursorFollower';
@@ -71,6 +72,9 @@ function App() {
       
       {/* Scroll to Top */}
       <ScrollToTop />
+      
+      {/* WhatsApp Button */}
+      <WhatsAppButton />
       
       {/* Footer */}
       <footer className="relative z-10 bg-primary-dark/50 backdrop-blur-sm border-t border-white/10 py-8">
