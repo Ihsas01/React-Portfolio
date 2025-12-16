@@ -3,18 +3,35 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/React-Portfolio/',
   plugins: [react()],
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
+        manualChunks(id) {
           // Separate vendor chunks for better code splitting
-          'react-vendor': ['react', 'react-dom'],
-          'framer-motion': ['framer-motion'],
-          'react-icons': ['react-icons'],
-          'three-vendor': ['three'],
-          'emailjs': ['@emailjs/browser'],
-          'react-scroll': ['react-scroll'],
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('framer-motion')) {
+              return 'framer-motion';
+            }
+            if (id.includes('react-icons')) {
+              return 'react-icons';
+            }
+            if (id.includes('three')) {
+              return 'three-vendor';
+            }
+            if (id.includes('@emailjs')) {
+              return 'emailjs';
+            }
+            if (id.includes('react-scroll')) {
+              return 'react-scroll';
+            }
+            // Other node_modules
+            return 'vendor';
+          }
         },
       },
     },
