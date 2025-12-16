@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { isMobile } from '../utils/deviceDetection';
 
 const CursorFollower = () => {
+  // Don't render on mobile devices (no cursor)
+  if (isMobile()) {
+    return null;
+  }
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);

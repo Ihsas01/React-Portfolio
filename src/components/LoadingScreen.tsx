@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { isMobile } from '../utils/deviceDetection';
 
 const LoadingScreen = () => {
   const [loading, setLoading] = useState(true);
   const [typedText, setTypedText] = useState("");
   const fullText = "Heello! Welcome";
+  const isMobileDevice = isMobile();
 
   useEffect(() => {
+    // Faster loading on mobile
+    const loadingTime = isMobileDevice ? 1000 : 3000;
+    const typingSpeed = isMobileDevice ? 50 : 150;
+    
     let i = 0;
     const interval = setInterval(() => {
       setTypedText((prev) => prev + fullText.charAt(i));
@@ -14,9 +20,9 @@ const LoadingScreen = () => {
       if (i >= fullText.length) {
         clearInterval(interval);
       }
-    }, 150);
+    }, typingSpeed);
 
-    const timer = setTimeout(() => setLoading(false), 3000);
+    const timer = setTimeout(() => setLoading(false), loadingTime);
     return () => {
       clearInterval(interval);
       clearTimeout(timer);
