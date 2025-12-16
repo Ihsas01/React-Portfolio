@@ -1,17 +1,19 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, lazy } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import LoadingScreen from './components/LoadingScreen';
 import ReadingProgress from './components/ReadingProgress';
 import CursorFollower from './components/CursorFollower';
 import AnimatedBackground from './components/AnimatedBackground';
 import PageTransition from './components/PageTransition';
+
+// Lazy load components that aren't immediately visible
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
   // Scroll to top on page load/refresh
