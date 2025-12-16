@@ -52,6 +52,54 @@ const Projects: React.FC = () => {
 
   const projects: Project[] = [
     {
+      id: '14',
+      title: 'Flores - Eco-Friendly Cleaning Products',
+      description:
+        'A modern, responsive React landing page for Flores, showcasing premium eco-friendly cleaning and household products with smooth animations and interactive sections.',
+      image: portfolioReactImg,
+      github: 'https://github.com/Ihsas01/FLORES',
+      demo: 'https://ihsas01.github.io/FLORES/',
+      category: 'web-mini',
+      technologies: [
+        'React',
+        'Tailwind CSS',
+        'Framer Motion',
+        'React Hook Form',
+        'React Helmet',
+        'Swiper.js',
+        'TypeScript'
+      ],
+      featured: false,
+      stats: { stars: 18, forks: 4, views: 220 },
+      difficulty: 'Intermediate',
+      duration: '1 month',
+      longDescription:
+        'Flores is a premium eco-friendly cleaning products landing page built with React. It focuses on clean, modern design, smooth animations, and a conversion-optimized layout to highlight sustainable products and customer trust.',
+      features: [
+        'Modern eco-friendly branding with green and white theme',
+        'Smooth Framer Motion animations across sections',
+        'Fully responsive layout for mobile, tablet, and desktop',
+        'Lazy-loaded images and optimized components for performance',
+        'Accessibility enhancements with ARIA labels and keyboard navigation',
+        'SEO optimization using React Helmet with meta and Open Graph tags',
+        'Interactive AI-powered chat widget for customer queries',
+        'Floating WhatsApp button for instant contact',
+        'Scroll-triggered animated counters for key metrics',
+        'Testimonials carousel powered by Swiper.js',
+        'Contact form built with React Hook Form and validation'
+      ],
+      challenges: [
+        'Balancing rich animations with performance on low-end devices',
+        'Ensuring accessibility while using custom animated components',
+        'Structuring SEO-friendly content in a single-page layout'
+      ],
+      learnings: [
+        'Advanced usage of Framer Motion for production-grade landing pages',
+        'Best practices for accessibility in animated React interfaces',
+        'Combining SEO, performance, and UX considerations in a marketing site'
+      ]
+    },
+    {
       id: '1',
       title: 'Advanced Blood Donation System',
       description: 'A comprehensive MERN stack application for managing blood donations and requests. Features include donor registration, blood inventory management, real-time blood request tracking, and automated matching system for blood types.',
@@ -515,54 +563,6 @@ const Projects: React.FC = () => {
         'Delivery system integration'
       ]
     },
-    {
-      id: '14',
-      title: 'Flores - Eco-Friendly Cleaning Products',
-      description:
-        'A modern, responsive React landing page for Flores, showcasing premium eco-friendly cleaning and household products with smooth animations and interactive sections.',
-      image: portfolioReactImg,
-      github: 'https://github.com/Ihsas01/FLORES',
-      demo: 'https://ihsas01.github.io/FLORES/',
-      category: 'web-mini',
-      technologies: [
-        'React',
-        'Tailwind CSS',
-        'Framer Motion',
-        'React Hook Form',
-        'React Helmet',
-        'Swiper.js',
-        'TypeScript'
-      ],
-      featured: false,
-      stats: { stars: 18, forks: 4, views: 220 },
-      difficulty: 'Intermediate',
-      duration: '1 month',
-      longDescription:
-        'Flores is a premium eco-friendly cleaning products landing page built with React. It focuses on clean, modern design, smooth animations, and a conversion-optimized layout to highlight sustainable products and customer trust.',
-      features: [
-        'Modern eco-friendly branding with green and white theme',
-        'Smooth Framer Motion animations across sections',
-        'Fully responsive layout for mobile, tablet, and desktop',
-        'Lazy-loaded images and optimized components for performance',
-        'Accessibility enhancements with ARIA labels and keyboard navigation',
-        'SEO optimization using React Helmet with meta and Open Graph tags',
-        'Interactive AI-powered chat widget for customer queries',
-        'Floating WhatsApp button for instant contact',
-        'Scroll-triggered animated counters for key metrics',
-        'Testimonials carousel powered by Swiper.js',
-        'Contact form built with React Hook Form and validation'
-      ],
-      challenges: [
-        'Balancing rich animations with performance on low-end devices',
-        'Ensuring accessibility while using custom animated components',
-        'Structuring SEO-friendly content in a single-page layout'
-      ],
-      learnings: [
-        'Advanced usage of Framer Motion for production-grade landing pages',
-        'Best practices for accessibility in animated React interfaces',
-        'Combining SEO, performance, and UX considerations in a marketing site'
-      ]
-    },
   ];
 
   // Simulate loading
@@ -574,9 +574,11 @@ const Projects: React.FC = () => {
   // Filter projects
   const filteredProjects = projects.filter(project => {
     const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
+    const searchLower = searchTerm.trim().toLowerCase();
+    const matchesSearch = searchLower === '' || 
+                         project.title.toLowerCase().includes(searchLower) ||
+                         project.description.toLowerCase().includes(searchLower) ||
+                         project.technologies.some(tech => tech.toLowerCase().includes(searchLower));
     return matchesCategory && matchesSearch;
   });
 
@@ -700,10 +702,11 @@ const Projects: React.FC = () => {
               </motion.div>
             ) : (
               <motion.div
-                key="projects"
+                key={`projects-${selectedCategory}-${searchTerm.trim()}`}
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
+                exit="hidden"
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               >
                 {filteredProjects.map((project) => (
