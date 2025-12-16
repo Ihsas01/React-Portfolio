@@ -826,19 +826,18 @@ const Projects: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
               onClick={closeProjectModal}
-            />
-            
-            {/* Modal */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-primary-light/95 backdrop-blur-md border border-white/10 rounded-2xl z-50 m-4"
-              onClick={(e) => e.stopPropagation()}
             >
+              {/* Modal */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-primary-light/95 backdrop-blur-md border border-white/10 rounded-2xl z-50"
+                onClick={(e) => e.stopPropagation()}
+              >
               {/* Modal Header */}
               <div className="sticky top-0 bg-primary-light/95 backdrop-blur-md border-b border-white/10 p-6 rounded-t-2xl">
                 <div className="flex items-start justify-between">
@@ -977,6 +976,7 @@ const Projects: React.FC = () => {
                   </motion.a>
                 </div>
               </div>
+              </motion.div>
             </motion.div>
           </>
         )}
