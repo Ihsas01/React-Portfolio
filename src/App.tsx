@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -14,6 +14,22 @@ import AnimatedBackground from './components/AnimatedBackground';
 import PageTransition from './components/PageTransition';
 
 function App() {
+  // Scroll to top on page load/refresh
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    
+    // Also handle browser back/forward navigation
+    const handlePopState = () => {
+      window.scrollTo(0, 0);
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-primary text-light font-sans transition-colors duration-300 relative overflow-x-hidden">
       {/* Background Effects */}
