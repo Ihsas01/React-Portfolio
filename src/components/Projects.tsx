@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaSearch, FaStar, FaCode, FaMobile, FaServer, FaLaptopCode, FaEye, FaHeart, FaTimes, FaClock, FaGlobe } from 'react-icons/fa';
+import floresImg from '../assets/Flores.png';
 
 // Placeholder images with better quality
 const bloodDonationImg = 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&crop=center';
@@ -56,7 +57,7 @@ const Projects: React.FC = () => {
       title: 'Flores - Eco-Friendly Cleaning Products',
       description:
         'A modern, responsive React landing page for Flores, showcasing premium eco-friendly cleaning and household products with smooth animations and interactive sections.',
-      image: portfolioReactImg,
+      image: floresImg,
       github: 'https://github.com/Ihsas01/FLORES',
       demo: 'https://ihsas01.github.io/FLORES/',
       category: 'web-mini',
