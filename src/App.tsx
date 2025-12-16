@@ -1,5 +1,6 @@
 import { Suspense, useEffect, lazy } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ScrollToTop from './components/ScrollToTop';
@@ -34,7 +35,8 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-primary text-light font-sans transition-colors duration-300 relative overflow-x-hidden">
+    <ThemeProvider>
+      <div className="min-h-screen bg-primary text-light font-sans transition-colors duration-300 relative overflow-x-hidden">
       {/* Background Effects */}
       <AnimatedBackground />
       
@@ -86,7 +88,8 @@ function App() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 

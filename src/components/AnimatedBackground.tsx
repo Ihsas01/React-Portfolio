@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 import { isMobile, isLowEndDevice } from '../utils/deviceDetection';
+import { useTheme } from '../contexts/ThemeContext';
 
 const AnimatedBackground = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const isMobileDevice = isMobile();
   const isLowEnd = isLowEndDevice();
+  const { isDark } = useTheme();
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -32,12 +34,13 @@ const AnimatedBackground = () => {
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
-    // Create particle material with gradient - reduce quality on mobile
+    // Create particle material with gradient - reduce quality on mobile, adapt to theme
+    const particleColor = isDark ? 0x00d4ff : 0x0284c7; // Blue for dark, lighter blue for light
     const particlesMaterial = new THREE.PointsMaterial({
       size: (isMobileDevice || isLowEnd) ? 0.03 : 0.02,
-      color: new THREE.Color(0x00d4ff),
+      color: new THREE.Color(particleColor),
       transparent: true,
-      opacity: (isMobileDevice || isLowEnd) ? 0.5 : 0.8,
+      opacity: (isMobileDevice || isLowEnd) ? (isDark ? 0.5 : 0.3) : (isDark ? 0.8 : 0.5),
       blending: THREE.AdditiveBlending,
     });
 
@@ -49,10 +52,12 @@ const AnimatedBackground = () => {
       // Reduce geometry segments on mobile
       const segments = (isMobileDevice || isLowEnd) ? 16 : 32;
       const geometry = new THREE.SphereGeometry(size, segments, segments);
+      // Adjust colors for light mode
+      const adjustedColor = isDark ? color : (color === 0x00d4ff ? 0x0284c7 : color === 0xff0080 ? 0xc026d3 : color);
       const material = new THREE.MeshBasicMaterial({
-        color: color,
+        color: adjustedColor,
         transparent: true,
-        opacity: (isMobileDevice || isLowEnd) ? 0.05 : 0.1,
+        opacity: (isMobileDevice || isLowEnd) ? (isDark ? 0.05 : 0.02) : (isDark ? 0.1 : 0.05),
         blending: THREE.AdditiveBlending,
       });
       const orb = new THREE.Mesh(geometry, material);
@@ -139,12 +144,12 @@ const AnimatedBackground = () => {
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
-      if (mountRef.current) {
+      if (mountRef.current && renderer.domElement.parentNode === mountRef.current) {
         mountRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
     };
-  }, []);
+  }, [isDark, isMobileDevice, isLowEnd]);
 
   return (
     <>
@@ -160,11 +165,15 @@ const AnimatedBackground = () => {
         {/* Radial gradient overlay */}
         <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-primary/40" />
         
-        {/* Animated gradient orbs */}
+        {/* Animated gradient orbs - Theme aware */}
         {!isMobileDevice && (
           <>
             <motion.div
-              className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-full blur-3xl"
+              className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl ${
+                isDark 
+                  ? 'bg-gradient-to-r from-secondary/10 to-accent/10' 
+                  : 'bg-gradient-to-r from-blue-200/20 to-cyan-200/20'
+              }`}
               animate={isLowEnd ? {} : {
                 x: [0, 100, 0],
                 y: [0, -50, 0],
@@ -179,7 +188,11 @@ const AnimatedBackground = () => {
             
             {!isLowEnd && (
               <motion.div
-                className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-r from-accent/10 to-secondary/10 rounded-full blur-3xl"
+                className={`absolute top-3/4 right-1/4 w-80 h-80 rounded-full blur-3xl ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-accent/10 to-secondary/10' 
+                    : 'bg-gradient-to-r from-purple-200/20 to-pink-200/20'
+                }`}
                 animate={{
                   x: [0, -80, 0],
                   y: [0, 60, 0],
@@ -196,7 +209,11 @@ const AnimatedBackground = () => {
             
             {!isLowEnd && (
               <motion.div
-                className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-success/10 to-secondary/10 rounded-full blur-3xl"
+                className={`absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full blur-3xl ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-success/10 to-secondary/10' 
+                    : 'bg-gradient-to-r from-emerald-200/20 to-cyan-200/20'
+                }`}
                 animate={{
                   x: [0, 60, 0],
                   y: [0, -40, 0],
@@ -247,16 +264,22 @@ const AnimatedBackground = () => {
         <div className="w-full h-full bg-noise" />
       </div>
 
-      {/* Grid Pattern */}
+      {/* Grid Pattern - Theme aware */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div 
-          className="w-full h-full opacity-10"
+          className="w-full h-full opacity-10 dark:opacity-10"
           style={{
-            backgroundImage: `
-              linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px)
-            `,
+            backgroundImage: isDark 
+              ? `
+                linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px)
+              `
+              : `
+                linear-gradient(rgba(2, 132, 199, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 132, 199, 0.08) 1px, transparent 1px)
+              `,
             backgroundSize: '50px 50px',
+            opacity: isDark ? 0.1 : 0.05,
           }}
         />
       </div>

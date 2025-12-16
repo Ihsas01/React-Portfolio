@@ -16,6 +16,302 @@
     min-height: 100vh;
     overflow-x: hidden;
     background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a0f 50%, #000000 100%);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Light mode styles - Beautiful and modern */
+  :root:not(.dark) {
+    --bg-primary: #f8fafc;
+    --bg-primary-light: #ffffff;
+    --bg-primary-dark: #f1f5f9;
+    --text-light: #1e293b;
+    --text-tertiary: #64748b;
+    --border-color: rgba(15, 23, 42, 0.08);
+    --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -1px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+  }
+
+  /* Dark mode styles (default) */
+  :root.dark {
+    --bg-primary: #0a0a0f;
+    --bg-primary-light: #1a1a2e;
+    --bg-primary-dark: #000000;
+    --text-light: #ffffff;
+    --text-tertiary: #8892b0;
+  }
+
+  /* Apply theme colors to body - Beautiful gradient for light mode */
+  :root:not(.dark) body {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 25%, #f1f5f9 50%, #ffffff 75%, #f8fafc 100%) !important;
+    background-attachment: fixed !important;
+    color: #1e293b !important;
+  }
+
+  :root.dark body {
+    background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a0f 50%, #000000 100%) !important;
+    color: #ffffff !important;
+  }
+
+  /* Theme-aware background for main container */
+  :root:not(.dark) .bg-primary {
+    background-color: transparent !important;
+  }
+
+  :root:not(.dark) .bg-primary-light {
+    background-color: #ffffff !important;
+  }
+
+  :root:not(.dark) .bg-primary-dark {
+    background-color: #f1f5f9 !important;
+  }
+
+  :root.dark .bg-primary {
+    background-color: #0a0a0f !important;
+  }
+
+  /* Theme-aware text colors - Better contrast in light mode */
+  :root:not(.dark) .text-light {
+    color: #1e293b !important;
+  }
+
+  :root.dark .text-light {
+    color: #ffffff !important;
+  }
+
+  :root:not(.dark) .text-tertiary {
+    color: #64748b !important;
+  }
+
+  :root.dark .text-tertiary {
+    color: #8892b0 !important;
+  }
+
+  /* Secondary and accent colors in light mode */
+  :root:not(.dark) .text-secondary {
+    color: #0284c7 !important;
+  }
+
+  :root:not(.dark) .text-accent {
+    color: #c026d3 !important;
+  }
+
+  /* Theme-aware borders and backgrounds - Softer in light mode */
+  :root:not(.dark) .border-white\/10 {
+    border-color: rgba(15, 23, 42, 0.08) !important;
+  }
+
+  :root:not(.dark) .bg-white\/5 {
+    background-color: rgba(15, 23, 42, 0.03) !important;
+  }
+
+  :root:not(.dark) .bg-white\/10 {
+    background-color: rgba(15, 23, 42, 0.05) !important;
+  }
+
+  :root:not(.dark) .bg-white\/20 {
+    background-color: rgba(15, 23, 42, 0.08) !important;
+  }
+
+  /* Glass effect for light mode - More elegant */
+  :root:not(.dark) .glass {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+    box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.08) !important;
+  }
+
+  /* Card backgrounds in light mode - Beautiful shadows */
+  :root:not(.dark) .card {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.1), 0 1px 2px 0 rgba(15, 23, 42, 0.06) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  :root:not(.dark) .card:hover {
+    box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -2px rgba(15, 23, 42, 0.05) !important;
+    border-color: rgba(2, 132, 199, 0.2) !important;
+  }
+
+  /* Input fields in light mode - Clean and modern */
+  :root:not(.dark) .input-field {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+    color: #1e293b !important;
+    box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.05) !important;
+  }
+
+  :root:not(.dark) .input-field:focus {
+    border-color: #0284c7 !important;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1) !important;
+    background-color: #ffffff !important;
+  }
+
+  :root:not(.dark) .input-field::placeholder {
+    color: #94a3b8 !important;
+  }
+
+  /* Navbar in light mode - Elegant styling */
+  :root:not(.dark) .nav-link {
+    color: #475569 !important;
+  }
+
+  :root:not(.dark) .nav-link:hover {
+    color: #0284c7 !important;
+  }
+
+  :root:not(.dark) .nav-link.active {
+    color: #0284c7 !important;
+  }
+
+  /* Headings in light mode - Better hierarchy */
+  :root:not(.dark) h1,
+  :root:not(.dark) h2,
+  :root:not(.dark) h3,
+  :root:not(.dark) h4,
+  :root:not(.dark) h5,
+  :root:not(.dark) h6 {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+  }
+
+  /* Paragraphs in light mode */
+  :root:not(.dark) p {
+    color: #334155 !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Buttons in light mode - More vibrant */
+  :root:not(.dark) .btn-primary {
+    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.3), 0 2px 4px -1px rgba(2, 132, 199, 0.2) !important;
+  }
+
+  :root:not(.dark) .btn-primary:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%) !important;
+    box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.4), 0 4px 6px -2px rgba(2, 132, 199, 0.3) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  :root:not(.dark) .btn-secondary {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #0284c7 !important;
+    border: 1.5px solid rgba(2, 132, 199, 0.3) !important;
+    box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.05) !important;
+  }
+
+  :root:not(.dark) .btn-secondary:hover {
+    background: #ffffff !important;
+    border-color: #0284c7 !important;
+    box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Badges in light mode */
+  :root:not(.dark) .badge {
+    background-color: rgba(2, 132, 199, 0.1) !important;
+    color: #0284c7 !important;
+    border-color: rgba(2, 132, 199, 0.2) !important;
+  }
+
+  :root:not(.dark) .badge-secondary {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(14, 165, 233, 0.15) 100%) !important;
+    color: #0369a1 !important;
+  }
+
+  /* Footer in light mode */
+  :root:not(.dark) footer {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border-top-color: rgba(15, 23, 42, 0.1) !important;
+  }
+
+  /* Scrollbar in light mode */
+  :root:not(.dark) ::-webkit-scrollbar-track {
+    background: rgba(241, 245, 249, 0.5) !important;
+  }
+
+  :root:not(.dark) ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #0284c7 0%, #0ea5e9 100%) !important;
+  }
+
+  :root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #0369a1 0%, #0284c7 100%) !important;
+  }
+
+  /* Selection in light mode */
+  :root:not(.dark) ::selection {
+    background: rgba(2, 132, 199, 0.2) !important;
+    color: #0f172a !important;
+  }
+
+  /* Links in light mode */
+  :root:not(.dark) a {
+    color: #0284c7 !important;
+  }
+
+  :root:not(.dark) a:hover {
+    color: #0369a1 !important;
+  }
+
+  /* Section spacing improvements for light mode */
+  :root:not(.dark) .section-spacing {
+    background: transparent !important;
+  }
+
+  /* Gradient text in light mode - More vibrant */
+  :root:not(.dark) .gradient-text {
+    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #c026d3 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  /* Loading screen in light mode */
+  :root:not(.dark) .loading-screen {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%) !important;
+  }
+
+  /* Navbar logo in light mode */
+  :root:not(.dark) .bg-gradient-to-r.from-secondary.to-accent {
+    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%) !important;
+  }
+
+  :root:not(.dark) .text-primary {
+    color: #ffffff !important;
+  }
+
+  /* Hover effects in light mode */
+  :root:not(.dark) .hover\:bg-white\/10:hover {
+    background-color: rgba(2, 132, 199, 0.1) !important;
+  }
+
+  :root:not(.dark) .hover\:bg-white\/5:hover {
+    background-color: rgba(2, 132, 199, 0.05) !important;
+  }
+
+  /* Section backgrounds in light mode */
+  :root:not(.dark) section {
+    background: transparent !important;
+  }
+
+  /* Better contrast for icons in light mode */
+  :root:not(.dark) svg {
+    opacity: 0.9;
+  }
+
+  /* Smooth transitions for all theme changes */
+  * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+  }
+
+  /* Exclude animations from transition */
+  *[class*="animate"],
+  *[style*="animation"],
+  .animate-spin,
+  .animate-pulse {
+    transition: none !important;
   }
 
   /* Custom scrollbar */

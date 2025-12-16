@@ -2,20 +2,19 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaSun, FaMoon, FaHome, FaUser, FaCode, FaBriefcase, FaEnvelope } from 'react-icons/fa';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [isDark, setIsDark] = useState(true);
+  const { isDark, toggleTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleClick = () => {
     setNav(!nav);
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-  
-  const toggleTheme = () => setIsDark(!isDark);
 
   const menuItems = [
     { name: 'Home', to: 'home', icon: FaHome },
@@ -60,10 +59,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [menuItems]);
 
-  // Apply theme to document
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark);
-  }, [isDark]);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
